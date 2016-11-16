@@ -6,7 +6,7 @@
       "name": "mobirise3",
       "title": "Mobirise 3",
       "styling": {
-        "primaryColor": "#c0a375",
+        "primaryColor": "#e25041",
         "secondaryColor": "#bfcecb",
         "successColor": "#90a878",
         "infoColor": "#7e9b9f",
@@ -204,7 +204,7 @@
           },
           "logo": {
             "image": {
-              "src": "@THEME_PATH@/components/_images/logo.png",
+              "src": "@PROJECT_PATH@/assets/images/13599759-224710397922670-6222329998999300675-n-128x128-95.jpg",
               "width": 128,
               "active": true,
               "link": "",
@@ -218,9 +218,9 @@
               "size": 0
             }
           },
-          "text1": "<strong>Address</strong><br>\n1234 Street Name<br>\nCity, AA 99999",
-          "text2": "<strong>Contacts</strong><br>\nEmail: support@mobirise.com<br>\nPhone: +1 (0) 000 0000 001<br>\nFax: +1 (0) 000 0000 002",
-          "text3": "<strong>Links</strong><br>\n<a class=\"text-primary\" href=\"https://mobirise.com/\">Website builder</a><br>\n<a class=\"text-primary\" href=\"https://mobirise.com/mobirise-free-win.zip\">Download for Windows</a><br>\n<a class=\"text-primary\" href=\"https://mobirise.com/mobirise-free-mac.zip\">Download for Mac</a>"
+          "text1": "",
+          "text2": "<strong>Contact</strong><br>\nEmail: skaminsky115@mobirise.com<br><br>",
+          "text3": "<strong>Links</strong><br><a href=\"http://nac.noip.me\">http://nac.noip.me</a>"
         }
       ]
     }
