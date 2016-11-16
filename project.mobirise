@@ -1,6 +1,6 @@
 {
   "settings": {
-    "currentPage": "index.html",
+    "currentPage": "contact.html",
     "name": "skaminsky115",
     "theme": {
       "name": "mobirise3",
@@ -264,7 +264,7 @@
           "form": {
             "action": "skaminsky115@berkeley.edu",
             "alerts": {
-              "success": "Thanks for filling out form!"
+              "success": "Thanks for contacting me!"
             },
             "fields": {
               "name": {
@@ -288,7 +288,7 @@
               }
             }
           },
-          "buttons": "<a data-app-btn=\"true\" type=\"submit\" class=\"btn btn-primary\">CONTACT US</a>"
+          "buttons": "<a data-app-btn=\"true\" type=\"submit\" class=\"btn btn-primary\" data-toolbar=\"-mbrLink,-mbrBtnAdd,-mbrBtnMove\">CONTACT ME</a>"
         },
         {
           "_styles": {
