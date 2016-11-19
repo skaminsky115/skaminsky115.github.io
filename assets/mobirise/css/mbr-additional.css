@@ -760,6 +760,7 @@ h6,
 #content2-11 BLOCKQUOTE {
   color: #4b04ba;
 }
+<<<<<<< HEAD
 #menu-1a .hide-buttons .nav-btn {
   display: none !important;
 }
@@ -833,3 +834,5 @@ h6,
 #header5-1d .mbr-section-lead {
   color: #9c9a9a;
 }
+=======
+>>>>>>> origin/master
