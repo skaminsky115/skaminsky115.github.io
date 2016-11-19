@@ -414,6 +414,28 @@ h6,
 #header1-5 .mbr-section-lead {
   color: #fac51c;
 }
+#msg-box8-18 .mbr-section-title,
+#msg-box8-18 p {
+  color: #fff;
+}
+#msg-box8-18 .mbr-section-title {
+  color: #fac51c;
+}
+#msg-box8-18 .lead P {
+  color: #3d8eb9;
+}
+#msg-box8-19 .mbr-section-title,
+#msg-box8-19 p {
+  color: #fff;
+}
+#msg-box8-19 .lead P {
+  font-size: 17px;
+  color: #fac51c;
+  text-align: center;
+}
+#msg-box8-19 .mbr-section-title {
+  color: #4b04ba;
+}
 #menu-0 .hide-buttons .nav-btn {
   display: none !important;
 }
@@ -625,7 +647,7 @@ h6,
   color: #fac51c;
 }
 #header1-a .mbr-section-lead {
-  color: #4b04ba;
+  color: #f7da64;
 }
 #header3-14 .mbr-section-title,
 #header3-14 .mbr-section-subtitle {
