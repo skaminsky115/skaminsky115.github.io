@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Site made with Mobirise Website Builder v3.9.0, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v3.9.0, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/images/icon-128x128-25.png" type="image/x-icon">
+  <meta name="description" content="">
+  <title>Hamming Calculator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link rel="stylesheet" href="assets/bootstrap-material-design-font/css/material.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/animate.css/animate.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/socicon.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  
+  
+</head>
+<!--CODE ADDITION-->
+<div id="loading">
+    <div id='loadingdiv'></div><h2 id='loadingtxt'>Loading...</h2><p id='slowclosetxt' style='color:red;display:none;width:50%;'>This program's loading screen may not be responding!</p><input type="submit" value="Close" id="closeloading" style="display:none;" class="styled-button-reset" onclick='loadingscreen("hide");'></input>
+</div>
+<!--CODE ADDITION END-->
+<body>
+<section id="ext_menu-1p">
+
+    <nav class="navbar navbar-dropdown navbar-fixed-top">
+        <div class="container">
+
+            <div class="mbr-table">
+                <div class="mbr-table-cell">
+
+                    <div class="navbar-brand">
+                        <a href="#top" class="navbar-logo"><img src="assets/images/icon-128x128-25.png" alt="Nucleic Acid Converter"></a>
+                        <a class="navbar-caption text-primary" href="index.html">Nucleic Acid Converter</a>
+                    </div>
+
+                </div>
+                <div class="mbr-table-cell">
+
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
+
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="index.html">Home</a></li><li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" href="#" data-toggle="dropdown-submenu" aria-expanded="false">Features</a><div class="dropdown-menu"><a class="dropdown-item" href="DNA-mRNA-Protein_Converter.html">DNA to mRNA to Protein Converter</a><a class="dropdown-item" href="Restriction_Site_Finder.html">Restriction Site Finder</a><a class="dropdown-item" href="hamming.html">Hamming Calculator</a></div></li><li class="nav-item"><a class="nav-link link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link link" href="contact.html">Contact</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-warning-outline btn-warning" href="download.html">DOWNLOAD</a></li></ul>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="close-icon"></div>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+</section>
+
+<section class="engine"><a rel="external" href="https://mobirise.com">simple bootstrap web site creator</a></section><section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-1s" style="background-image: url(assets/images/ed0xsmo-2000x1000-96.jpg); padding-top: 120px; padding-bottom: 120px;">
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">Hamming Calculator</h3>
+                <div class="lead"><p><strong>The hamming Calculator determins the points out and determins the number off differences between two DNA strands<span style="font-size: 1.07rem; line-height: 1.5;">.</span></strong></p></div>
+                
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-section__container article" id="header3-1x" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="mbr-section-title display-2">First DNA Strand</h3>
+                <small class="mbr-section-subtitle"></small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-21" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+              
+              <link rel="stylesheet" href="css/style.css">
+              <link rel="stylesheet" href="css/button-checkbox_style.css">
+              <script src="js/main.js"></script>
+              <script src="js/algorithm.js"></script>
+              <script src="js/tmutilities.js"></script>
+              <script src="js/alertify.js"></script>
+              <script src="js/jquery.js"></script>
+              <h3 align="center"><textarea name="input1" id="input1" style='margin-top: 5px;margin-bottom: 5px;' placeholder="First DNA Strand" onkeyup='caps(this.id)' onkeypress='caps(this.id)' onupdate='caps(this.id)' onkeydown="if(acceptCharh(event.keyCode)==false){return false;}else{return true;}" oninput='/*console.log(this.value);*/' data-resizable="true"></textarea>
+              <font align='center' id="hstrlength1" color="green" size='2.5px'>Strand length: <text id="lenghtinput1">0</text></font>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-section__container article" id="header3-1y" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="mbr-section-title display-2">Second DNA Strand</h3>
+                <small class="mbr-section-subtitle"></small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-23" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+              
+              <h3 align="center"><textarea name="input2" id="input2" style='margin-top: 5px;margin-bottom: 5px;' placeholder="Second DNA Strand" onkeyup='caps(this.id)' onkeypress='caps(this.id)' onupdate='caps(this.id)' onkeydown="if(acceptCharh(event.keyCode)==false) {return false;}else{caps(this.id)}" oninput='/*console.log(this.value);*/' data-resizable="true"></textarea>
+              <font align='center' id="hstrlength2" color="green" size='2.5px'>Strand length: <text id="lenghtinput2">0</text></font>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-24" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead"><!--<p>Input keypad</p>-->
+              
+              <center><p class="toggle" style='color:green;font-size:15px;' onclick="togglekeyboard();">Input Keypad <img src='img\keyboard.svg' /></p>
+              <form id='strand' style="color:#0066FF;">
+              <input id="DNA1" type="radio" name="StrandType" value="DNA1" onclick='hamKey("DNA1")' checked>
+              <label for="DNA1"><font class="coa">First DNA</font></label>&nbsp;<br><br>
+              <input id="DNA2" type="radio" name="StrandType" value="DNA2" onclick='hamKey("DNA2")'>
+              <label for="DNA2"><font class="coa">Second DNA</font></label><br><br>
+              </form></center>
+              <div id='custkeys' align='center' style='font-size:20px;display:block;font-family:Monospace;'><hr style="height:10px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id='custkeyA' onclick="custkeys(this)" class='inputLetters'>A</a> <a href='javascript:void(0);' id="custkeyTU" onclick="custkeys(this)" class='inputLetters'>T</a><hr style="height:10px; visibility:hidden;" /><hr style="height:10px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id="custkeyG" onclick="custkeys(this)" class='inputLetters'>G</a> <a href='javascript:void(0);' id="custkeyC" onclick="custkeys(this)" class='inputLetters'>C</a><hr style="height:10px; visibility:hidden;" /><hr style="height:10px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id="custkey_" onclick="custkeys(this)" class='inputLetters'>_</a><hr style="height:10px; visibility:hidden;" />
+              </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-section__container" id="buttons1-25" style="background-color: rgb(68, 64, 64); padding-top: 0px; padding-bottom: 0px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-xs-center"><a class="btn btn-primary" onclick="hammingCounter();" id="compare">Compare</a> <a class="btn btn-warning-outline btn-warning" onclick="clearHamming();">Clear</a></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-section__container article" id="header3-26" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="mbr-section-title display-2"><br>Output Information</h3>
+                <small class="mbr-section-subtitle"></small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-29" style="background-color: rgb(68, 64, 64); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead"><!--<p>Output strand box</p>-->
+
+              <!--CODE ADDITION-->
+              <ion-scroll direction="xy" style="height:350px;background-color:black;" align="left" class="scroll-view ionic-scroll scroll-xy"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+                <div id="HammingOutput" style="font-size:18px; color:gold; white-space:nowrap;text-align:left; font-family:Monospace;"></div>
+              </div><div class="scroll-bar scroll-bar-h"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform-origin: right center 0px; transform: translate3d(-10px, 0px, 0px) scaleX(0.951923); width: 208px;"></div></div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform-origin: center bottom 0px; height: 0px;"></div></div></ion-scroll>
+              <!--CODE ADDITION-->
+
+            <p><a href="#msg-box8-1s">Go to Top</a></p></div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-section-md-padding mbr-footer footer1" id="contacts1-1q" style="background-color: rgb(51, 49, 49); padding-top: 90px; padding-bottom: 90px;">
+    
+    <div class="container">
+        <div class="row">
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <div><a href="index.html"><img src="assets/images/icon-128x128-64.png"></a></div>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p></p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Contact</strong><br>
+Email: nucleicacidconverter@gmail.com</p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Links</strong><br><br><a href="../">Back To skaminsky115</a><br><a href="download.html">Download</a><br></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section mbr-section-md-padding" id="social-buttons3-2a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">SHARE THIS PAGE!</h3>
+                <div>
+
+                  <div class="mbr-social-likes" data-counters="false">
+                    <span class="btn btn-social facebook" title="Share link on Facebook">
+                        <i class="socicon socicon-facebook"></i>
+                    </span>
+                    <span class="btn btn-social twitter" title="Share link on Twitter">
+                        <i class="socicon socicon-twitter"></i>
+                    </span>
+                    <span class="btn btn-social plusone" title="Share link on Google+">
+                        <i class="socicon socicon-google"></i>
+                    </span>
+                    
+                    
+                  </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-1r" style="background-color: rgb(41, 41, 41); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+    
+    <div class="container">
+        <p class="text-xs-center">Copyright (c) 2016 NucleicAcidConverter.</p>
+    </div>
+</footer>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smooth-scroll/SmoothScroll.js"></script>
+  <script src="assets/viewportChecker/jquery.viewportchecker.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <script src="assets/jarallax/jarallax.js"></script>
+  <script src="assets/social-likes/social-likes.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+  <input name="animation" type="hidden">
+  </body>
+</html>

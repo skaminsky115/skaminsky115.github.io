@@ -1,0 +1,149 @@
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+    border: 2px solid;
+    width: 100%;
+    height: 50px;
+    background-color: #444 !important;
+    font-family: monospace;
+    font-size: 10.4pt;
+    resize: none;
+    color: #00FF00;
+    border-color: #000000;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.inputLetters {
+    border: 2px solid #0a3c59;
+    background: #2d4707;
+    background: -webkit-gradient(linear, left top, left bottom, from(#4d7511), to(#2d4707));
+    background: -webkit-linear-gradient(top, #4d7511, #2d4707);
+    background: -moz-linear-gradient(top, #4d7511, #2d4707);
+    background: -ms-linear-gradient(top, #4d7511, #2d4707);
+    background: -o-linear-gradient(top, #4d7511, #2d4707);
+    background-image: -ms-linear-gradient(top, #4d7511 0%, #2d4707 100%);
+    padding: 4.5px 9px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+    text-shadow: #32f00c 0 1px 0;
+    color: #2910b3;
+    font-size: 24px;
+    /* font-family: helvetica, serif; */
+    font-family: Monospace;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    pointer-events: auto;
+    margin: -5px;
+    padding: 5px;
+}
+
+#custkeys {
+    background: #444;
+    position: relative;
+    margin: auto;
+    width: 50%;
+}
+
+#loading{
+    display: none;
+    opacity: 90;
+
+
+}
+#loadingdiv {
+    background: rgba(0,0,0,0.5) url('../img/Art-of-the-Cell-RNA-Polymerase.gif') no-repeat 50% 50%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 999;/* Make the contents of the body opaque during loading */
+    opacity: 90;
+}
+#loadingtxt
+{
+    z-index:9999;
+    position:fixed;    
+    color:gold;
+    font-size:24px;
+    font-weight:bold;
+    width: 100%;
+    text-align:center;
+    top:75%;
+}#closeloading
+{
+    z-index:9999;
+    position:fixed;    
+    right:5%;
+    bottom:5%;
+}#slowclosetxt
+{
+    z-index:9999;
+    background:#717171;
+    position:fixed;    
+    left:5%;
+    bottom:5%;
+}
+
+#tbx input[type="text"] {
+    background: 10px 6px #444 !important;
+    border: 0 none !important;
+    font: bold 12px Arial,Helvetica,Sans-serif !important;
+    color: #FF5A00 !important;
+    /*width: 150px !important;*/
+    width: 100%;
+    padding: 6px 15px 6px 35px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    
+    -webkit-transition: all 0.7s ease 0s !important;
+    -moz-transition: all 0.7s ease 0s !important;
+    -o-transition: all 0.7s ease 0s !important;
+    transition: all 0.7s ease 0s !important;
+    }
+.tbx{
+    background: 10px 6px #444 !important;
+    border: 0 none !important;
+    font: bold 12px Arial,Helvetica,Sans-serif !important;
+    color: #FF5A00 !important;
+    /*width: 150px !important;*/
+    width: 100%;
+    padding: 6px 15px 6px 35px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) !important;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset !important;
+    
+    -webkit-transition: all 0.7s ease 0s !important;
+    -moz-transition: all 0.7s ease 0s !important;
+    -o-transition: all 0.7s ease 0s !important;
+    transition: all 0.7s ease 0s !important;
+    }
+
+.scroll-view.scroll-xy {
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+.scroll-view {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-top: -1px;
+}
