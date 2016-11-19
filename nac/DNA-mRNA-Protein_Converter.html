@@ -124,7 +124,7 @@
             <div class="col-xs-12 lead"><!--<p>input strand text field</p>-->
                 
                 <!--CODE ADDITION-->
-                <textarea name="input" id="input" style="margin-top: 5px;margin-bottom: 5px;" placeholder="Input Strand" onkeyup="caps(this.id)" onkeypress="caps(this.id)" onupdate="caps(this.id)" onkeydown="if(acceptChar(event.keyCode)==false){return false;}else{caps(this.id)}" oninput="//console.log(this.value);" data-resizable="true"></textarea>
+                <textarea name="input" id="input" style="margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;" placeholder="Input Strand" onkeydown="if(acceptChar(event.keyCode)==false){return false;}" data-resizable="true"></textarea>
 
                 <center><p class="toggle" style="color:green;font-size:15px;" onclick="togglekeyboard();">Input Keypad <img src="img\keyboard.svg"></p></center>
 

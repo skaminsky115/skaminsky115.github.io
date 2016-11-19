@@ -102,7 +102,8 @@
               <script src="js/tmutilities.js"></script>
               <script src="js/alertify.js"></script>
               <script src="js/jquery.js"></script>
-              <h3 align="center"><textarea name="input1" id="input1" style='margin-top: 5px;margin-bottom: 5px;' placeholder="First DNA Strand" onkeyup='caps(this.id)' onkeypress='caps(this.id)' onupdate='caps(this.id)' onkeydown="if(acceptCharh(event.keyCode)==false){return false;}else{return true;}" oninput='/*console.log(this.value);*/' data-resizable="true"></textarea>
+              <h3 align="center">
+              <textarea name="input1" id="input1" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="First DNA Strand" onkeydown="if(acceptCharh(event.keyCode)==false){return false;}" data-resizable="true"></textarea>
               <font align='center' id="hstrlength1" color="green" size='2.5px'>Strand length: <text id="lenghtinput1">0</text></font>
 
             </div>
@@ -128,7 +129,8 @@
         <div class="row">
             <div class="col-xs-12 lead">
               
-              <h3 align="center"><textarea name="input2" id="input2" style='margin-top: 5px;margin-bottom: 5px;' placeholder="Second DNA Strand" onkeyup='caps(this.id)' onkeypress='caps(this.id)' onupdate='caps(this.id)' onkeydown="if(acceptCharh(event.keyCode)==false) {return false;}else{caps(this.id)}" oninput='/*console.log(this.value);*/' data-resizable="true"></textarea>
+              <h3 align="center">
+              <textarea name="input2" id="input2" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="Second DNA Strand" onkeydown="if(acceptCharh(event.keyCode)==false) {return false;}" data-resizable="true"></textarea>
               <font align='center' id="hstrlength2" color="green" size='2.5px'>Strand length: <text id="lenghtinput2">0</text></font>
 
             </div>

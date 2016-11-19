@@ -114,7 +114,7 @@
                 <!--
                 <textarea type="text" id="inputRSF" name="inputRE" onkeydown="if (event.keyCode == 13) {document.getElementById('cut').click(); return false;}" onkeyup="caps(this.id); this.value=this.value.replace(/[^AaTtGgCc]/g,'')" onkeypress="caps(this.id); " data-resizable="true" placeholder="Input Strand"></textarea>
                 -->
-                <textarea name="inputRE" id="inputRSF" style="margin-top: 5px;margin-bottom: 5px;" placeholder="Input Strand" onkeyup="caps(this.id)" onkeypress="caps(this.id)" onupdate="caps(this.id)" onkeydown="if(acceptChar(event.keyCode)==false){return false;}else{caps(this.id)}" oninput="//console.log(this.value);" data-resizable="true"></textarea>
+                <textarea name="inputRE" id="inputRSF" style="margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;" placeholder="Input Strand" onkeydown="if(acceptChar(event.keyCode)==false){return false;}" data-resizable="true"></textarea>
 
                 <p class="toggle" style='color:green;font-size:15px;' onclick="togglekeyboard();">Input Keypad <img src='img\keyboard.svg' /></p>
                 <div id='custkeys' align='center' style='font-size:20px;display:block;font-family:Monospace;'><hr style="height:10px; visibility:hidden;" />
