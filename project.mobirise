@@ -1,6 +1,6 @@
 {
   "settings": {
-    "currentPage": "index.html",
+    "currentPage": "projects-cs61a_projects.html",
     "name": "skaminsky115",
     "theme": {
       "name": "mobirise3",
@@ -26,7 +26,7 @@
     "publishType": "local",
     "favicon": "",
     "noImageResize": "",
-    "publishPath": "file:///C:/Users/thaum/Dropbox/Coding%20stuff/Webapp/skaminsky115/2016-11-19---3.20PM",
+    "publishPath": "file:///C:/Users/thaum/Dropbox/Coding%20stuff/Webapp/skaminsky115/2016-11-21---3.33PM",
     "path": "@PROJECT_PATH@",
     "screenshot": "screenshot.png"
   },
@@ -72,48 +72,8 @@
             "showButtons": false
           },
           "title": "Stephan Kaminsky",
-          "text": "This site is a work in progress, showing the different creations and achievements of myself. <br>[This site is a work in progress.]<br>",
+          "text": "This site is a work in progress, showing the different creations and achievements of myself. <br>[This site is a work in progress and not just because my life is still in progress.]<br>",
           "buttons": "<a data-app-btn=\"true\" class=\"btn btn-lg btn-primary\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">DOWNLOAD FOR WINDOWS</a> "
-        },
-        {
-          "_styles": {
-            ".mbr-section-title, p": {
-              "color": "#fff"
-            },
-            ".mbr-section-title": {
-              "color": "#fac51c"
-            },
-            ".lead P": {
-              "color": "#3d8eb9"
-            }
-          },
-          "_tags": [
-            "Theme"
-          ],
-          "_name": "msg-box8",
-          "_anchor": "msg-box8-18",
-          "_params": {
-            "paddingTop": 3,
-            "paddingBottom": 3,
-            "parallax": true,
-            "bgImageRadio": true,
-            "bgImage": "@PROJECT_PATH@/assets/images/scheme-2000x996-19.png",
-            "bgColor": "#F2F2F2",
-            "bgColorRadio": false,
-            "bgVideo": {
-              "url": "https://www.youtube.com/watch?v=uNCr7NdOJgw"
-            },
-            "bgVideoRadio": false,
-            "overlay": true,
-            "overlayOpacity": 0.5,
-            "overlayColor": "#222",
-            "showTitle": true,
-            "showText": true,
-            "showButton": true
-          },
-          "title": "CS61A Projects",
-          "text": "<p>This class teaches <b>The Structure and Interpretation of Computer Programs</b></p>",
-          "button": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"projects-cs61a_projects.html\" data-toolbar=\"-mbrBtnMove\">View CS61A Projects</a>"
         },
         {
           "_styles": {
@@ -154,8 +114,48 @@
             "showButton": true
           },
           "title": "Nucleic Acid Converter",
-          "text": "<p><b>A useful tool which converts DNA to mRNA to Protein plus has some other useful tools.</b></p>",
+          "text": "<p><b>A useful tool which converts DNA to mRNA to Protein plus has some other useful tools.</b></p><p><b>Initially created in 2014 and has been updated and added to over the years.</b></p>",
           "button": "<a data-app-btn=\"true\" class=\"btn btn-danger\" href=\"nac/\" data-toolbar=\"-mbrBtnMove\">Use the NAC Web App</a>"
+        },
+        {
+          "_styles": {
+            ".mbr-section-title, p": {
+              "color": "#fff"
+            },
+            ".mbr-section-title": {
+              "color": "#fac51c"
+            },
+            ".lead P": {
+              "color": "#3d8eb9"
+            }
+          },
+          "_tags": [
+            "Theme"
+          ],
+          "_name": "msg-box8",
+          "_anchor": "msg-box8-18",
+          "_params": {
+            "paddingTop": 3,
+            "paddingBottom": 3,
+            "parallax": true,
+            "bgImageRadio": true,
+            "bgImage": "@PROJECT_PATH@/assets/images/scheme-2000x996-19.png",
+            "bgColor": "#F2F2F2",
+            "bgColorRadio": false,
+            "bgVideo": {
+              "url": "https://www.youtube.com/watch?v=uNCr7NdOJgw"
+            },
+            "bgVideoRadio": false,
+            "overlay": true,
+            "overlayOpacity": 0.5,
+            "overlayColor": "#222",
+            "showTitle": true,
+            "showText": true,
+            "showButton": true
+          },
+          "title": "CS61A Projects",
+          "text": "<p>This class taught me&nbsp;<b>The Structure and Interpretation of Computer Programs</b></p><p><b>All 4 projects were created in fall of 2016</b></p>",
+          "button": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"projects-cs61a_projects.html\" data-toolbar=\"-mbrBtnMove\">View CS61A Projects</a>"
         },
         {
           "_styles": {
@@ -932,7 +932,7 @@
             "inverse": false,
             "showTitle": true,
             "showText": true,
-            "showButtons": false
+            "showButtons": true
           },
           "media": {
             "image": {
@@ -958,7 +958,7 @@
           },
           "title": "<span style=\"font-size: 3rem; line-height: 1.1;\">The Game of Hog</span><br>",
           "text": "In this project, I developed a simulator and &nbsp;multiple strategies for the dice game of Hog. This game could be played with two players &nbsp;one which would be against a strategy which I created. I build this project with my partner Noah Pepper.",
-          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">MORE</a>"
+          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"downloads\\projects-cs61a\\the_game_of_hog.zip\" data-toolbar=\"-mbrBtnMove\">Download Compiled Python Script</a>"
         },
         {
           "_styles": {
@@ -1102,7 +1102,7 @@
             "inverse": true,
             "showTitle": true,
             "showText": true,
-            "showButtons": false
+            "showButtons": true
           },
           "media": {
             "image": {
@@ -1128,7 +1128,7 @@
           },
           "title": "'Yelp' Maps",
           "text": "In this project, I created a visualization of restaurant ratings using machine learning and the Yelp academic dataset. I build this project with my partner Noah Pepper.",
-          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"https://mobirise.com\">MORE</a>"
+          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-secondary\" href=\"downloads\\projects-cs61a\\yelp_maps.zip\" data-toolbar=\"-mbrBtnMove\">Download Compiled Python Script</a>"
         },
         {
           "_styles": {
@@ -1227,7 +1227,7 @@
             "inverse": false,
             "showTitle": true,
             "showText": true,
-            "showButtons": false
+            "showButtons": true
           },
           "media": {
             "image": {
@@ -1253,7 +1253,7 @@
           },
           "title": "Ants vs SomeBees",
           "text": "In this project, I created a tower defense game called Ants vs SomeBees (A game inspired by PopCap Games' Plants vs Zombies). I build this project with my partner Noah Pepper.",
-          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"https://mobirise.com\">MORE</a>"
+          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-success\" href=\"downloads\\projects-cs61a\\ants_vs_somebees.zip\" data-toolbar=\"-mbrBtnMove\">Download Compiled Python Script</a>"
         },
         {
           "_styles": {
@@ -1352,7 +1352,7 @@
             "inverse": true,
             "showTitle": true,
             "showText": true,
-            "showButtons": false
+            "showButtons": true
           },
           "media": {
             "image": {
@@ -1378,7 +1378,7 @@
           },
           "title": "<br>The Scheme Interpretor",
           "text": "In this project, I developed an interpreter for a subset of the Scheme language. I build this project with my partner Noah Pepper.",
-          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-primary\" href=\"https://mobirise.com\">MORE</a>"
+          "buttons": "<a data-app-btn=\"true\" class=\"btn btn-warning\" href=\"downloads\\projects-cs61a\\scheme.zip\" data-toolbar=\"-mbrBtnMove\">Download Compiled Python Script</a>"
         },
         {
           "_styles": {

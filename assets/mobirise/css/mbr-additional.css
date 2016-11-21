@@ -414,16 +414,6 @@ h6,
 #header1-5 .mbr-section-lead {
   color: #fac51c;
 }
-#msg-box8-18 .mbr-section-title,
-#msg-box8-18 p {
-  color: #fff;
-}
-#msg-box8-18 .mbr-section-title {
-  color: #fac51c;
-}
-#msg-box8-18 .lead P {
-  color: #3d8eb9;
-}
 #msg-box8-19 .mbr-section-title,
 #msg-box8-19 p {
   color: #fff;
@@ -435,6 +425,16 @@ h6,
 }
 #msg-box8-19 .mbr-section-title {
   color: #4b04ba;
+}
+#msg-box8-18 .mbr-section-title,
+#msg-box8-18 p {
+  color: #fff;
+}
+#msg-box8-18 .mbr-section-title {
+  color: #fac51c;
+}
+#msg-box8-18 .lead P {
+  color: #3d8eb9;
 }
 #menu-0 .hide-buttons .nav-btn {
   display: none !important;
