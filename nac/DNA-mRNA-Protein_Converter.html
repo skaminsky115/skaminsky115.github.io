@@ -26,7 +26,7 @@
 </head>
 <!--CODE ADDITION-->
 <div id="loading">
-    <div id='loadingdiv'></div><h2 id='loadingtxt'>Loading...</h2><p id='slowclosetxt' style='color:red;display:none;width:50%;'>This program's loading screen may not be responding!</p><input type="submit" value="Close" id="closeloading" style="display:none;" class="styled-button-reset" onclick='loadingscreen("hide");'></input>
+    <div id='loadingdiv'><text id='loadingtxt'>Loading...</text><text id='slowclosetxt' style='color:red;display:none;width:50%;'>This program's loading screen may not be responding!</text><sinput type="submit" value="Close" id="closeloading" style="display:none;" class="btn btn-primary" onclick='loadingscreen("hide");'>Close</sinput></div>
 </div>
 <!--CODE ADDITION END-->
 <body>
@@ -124,13 +124,16 @@
             <div class="col-xs-12 lead"><!--<p>input strand text field</p>-->
                 
                 <!--CODE ADDITION-->
-                <textarea name="input" id="input" style="margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;" placeholder="Input Strand" onkeydown="if(acceptChar(event.keyCode)==false){return false;}" data-resizable="true"></textarea>
+                <textarea name="input" id="input" style="margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;" placeholder="Input Strand" onkeydown="inputcheckdown(event, this, 'convert', true);" onkeyup="inputcheckup(event, this, true);" data-resizable="true"></textarea>
 
                 <center><p class="toggle" style="color:green;font-size:15px;" onclick="togglekeyboard();">Input Keypad <img src="img\keyboard.svg"></p></center>
 
-                <div id="custkeys" align="center" style="font-size: 20px; display: block; font-family: monospace;"><hr style="height:10px; visibility:hidden;">
-                   <a href="javascript:void(0);" id="custkeyA" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">A</a> <a href="javascript:void(0);" id="custkeyTU" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">T</a><hr style="height:10px; visibility:hidden;"><hr style="height:10px; visibility:hidden;">
-                   <a href="javascript:void(0);" id="custkeyG" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">G</a> <a href="javascript:void(0);" id="custkeyC" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">C</a><hr style="height:10px; visibility:hidden;">
+                <div id="custkeys" align="center" style="font-size: 20px; display: block; font-family: monospace;">
+                <hr style="height:1px; visibility:hidden;">
+                   <a href="javascript:void(0);" id="custkeyA" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">A</a> <a href="javascript:void(0);" id="custkeyTU" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">T</a>
+                   <hr style="height:1px; visibility:hidden;">
+                   <a href="javascript:void(0);" id="custkeyG" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">G</a> <a href="javascript:void(0);" id="custkeyC" onclick="document.getElementById('input').value=document.getElementById('input').value+this.innerHTML;document.getElementById('input').scrollLeft=document.getElementById('input').scrollWidth;" class="inputLetters">C</a>
+                   <hr style="height:1px; visibility:hidden;">
                 </div>
                 <script type="text/javascript">
                     $(function(){

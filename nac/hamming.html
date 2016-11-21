@@ -26,7 +26,7 @@
 </head>
 <!--CODE ADDITION-->
 <div id="loading">
-    <div id='loadingdiv'></div><h2 id='loadingtxt'>Loading...</h2><p id='slowclosetxt' style='color:red;display:none;width:50%;'>This program's loading screen may not be responding!</p><input type="submit" value="Close" id="closeloading" style="display:none;" class="styled-button-reset" onclick='loadingscreen("hide");'></input>
+    <div id='loadingdiv'><text id='loadingtxt'>Loading...</text><text id='slowclosetxt' style='color:red;display:none;width:50%;'>This program's loading screen may not be responding!</text><sinput type="submit" value="Close" id="closeloading" style="display:none;" class="btn btn-primary" onclick='loadingscreen("hide");'>Close</sinput></div>
 </div>
 <!--CODE ADDITION END-->
 <body>
@@ -103,8 +103,8 @@
               <script src="js/alertify.js"></script>
               <script src="js/jquery.js"></script>
               <h3 align="center">
-              <textarea name="input1" id="input1" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="First DNA Strand" onkeydown="if(acceptCharh(event.keyCode)==false){return false;}" data-resizable="true"></textarea>
-              <font align='center' id="hstrlength1" color="green" size='2.5px'>Strand length: <text id="lenghtinput1">0</text></font>
+              <textarea name="input1" id="input1" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="First DNA Strand" onkeydown="inputcheckdown(event, this, 'compare');hamminghelper(this.id);" onkeyup="inputcheckup(event, this);hamminghelper(this.id);" data-resizable="true"></textarea>
+              <font align='center' id="hstrlength1" color="green" size='2.5px'>Strand length: <text id="lengthinput1">0</text></font>
 
             </div>
         </div>
@@ -130,8 +130,8 @@
             <div class="col-xs-12 lead">
               
               <h3 align="center">
-              <textarea name="input2" id="input2" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="Second DNA Strand" onkeydown="if(acceptCharh(event.keyCode)==false) {return false;}" data-resizable="true"></textarea>
-              <font align='center' id="hstrlength2" color="green" size='2.5px'>Strand length: <text id="lenghtinput2">0</text></font>
+              <textarea name="input2" id="input2" style='margin-top: 5px;margin-bottom: 5px;text-transform: uppercase;' placeholder="Second DNA Strand" onkeydown="inputcheckdown(event, this, 'compare');hamminghelper(this.id);" onkeyup="inputcheckup(event, this);hamminghelper(this.id);" data-resizable="true"></textarea>
+              <font align='center' id="hstrlength2" color="green" size='2.5px'>Strand length: <text id="lengthinput2">0</text></font>
 
             </div>
         </div>
@@ -152,10 +152,10 @@
               <input id="DNA2" type="radio" name="StrandType" value="DNA2" onclick='hamKey("DNA2")'>
               <label for="DNA2"><font class="coa">Second DNA</font></label><br><br>
               </form></center>
-              <div id='custkeys' align='center' style='font-size:20px;display:block;font-family:Monospace;'><hr style="height:10px; visibility:hidden;" />
-                 <a href='javascript:void(0);' id='custkeyA' onclick="custkeys(this)" class='inputLetters'>A</a> <a href='javascript:void(0);' id="custkeyTU" onclick="custkeys(this)" class='inputLetters'>T</a><hr style="height:10px; visibility:hidden;" /><hr style="height:10px; visibility:hidden;" />
-                 <a href='javascript:void(0);' id="custkeyG" onclick="custkeys(this)" class='inputLetters'>G</a> <a href='javascript:void(0);' id="custkeyC" onclick="custkeys(this)" class='inputLetters'>C</a><hr style="height:10px; visibility:hidden;" /><hr style="height:10px; visibility:hidden;" />
-                 <a href='javascript:void(0);' id="custkey_" onclick="custkeys(this)" class='inputLetters'>_</a><hr style="height:10px; visibility:hidden;" />
+              <div id='custkeys' align='center' style='font-size:20px;display:block;font-family:Monospace;'><hr style="height:0px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id='custkeyA' onclick="custkeys(this)" class='inputLetters'>A</a> <a href='javascript:void(0);' id="custkeyTU" onclick="custkeys(this)" class='inputLetters'>T</a><hr style="height:0px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id="custkeyG" onclick="custkeys(this)" class='inputLetters'>G</a> <a href='javascript:void(0);' id="custkeyC" onclick="custkeys(this)" class='inputLetters'>C</a><hr style="height:0px; visibility:hidden;" />
+                 <a href='javascript:void(0);' id="custkey_" onclick="custkeys(this)" class='inputLetters'>_</a><hr style="height:0px; visibility:hidden;" />
               </div>
 
             </div>

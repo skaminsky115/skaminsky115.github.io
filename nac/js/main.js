@@ -1,17 +1,94 @@
-/*var pressTimer
+function inputcheckdown(e, ths, button, nasel=false){
+    if (e.keyCode == 13) { 
+        var start=ths.selectionStart;
+        var end = ths.selectionEnd;
+        var text=ths.value;
+        var text=text.toUpperCase();
+        var info = dnaorrna(ths, text, nasel);
+        var dnakey = info['key'], ntext = info['txt'];
+        if(ntext!=text){
+            ths.value=ntext
+            ths.setSelectionRange(start-(text.length - ntext.length),end-(text.length - ntext.length));
+        }else{
+            ths.value=ths.value.toUpperCase();
+            ths.setSelectionRange(start, end);
+        }
+        document.getElementById(button).click();
+        e.preventDefault();
+    }
+    // Allow: backspace, delete, tab, escape, enter and
+    if ($.inArray(e.keyCode, [46, 8, 27, 13, 110]) !== -1 ||
+      // Allow: Ctrl+A,Ctrl+C,Ctrl+V, Command+A
+      ((e.keyCode == 65 || e.keyCode == 86 || e.keyCode == 67 || e.keyCode == 88 || e.keyCode == 90 || e.keyCode == 89) && (e.ctrlKey === true || e.metaKey === true)) ||
+      // Allow: home, end, left, right, down, up
+      (e.keyCode >= 35 && e.keyCode <= 40)) {
+      // let it happen, don't do anything
+      return;
+    }
+    // Ensure that it is a number and stop the keypress
+    var info = dnaorrna(ths, "", nasel);
+    var dnakey = info['key'];
+    acceptableKeys=[65, 67, 71];
+    if (!acceptableKeys.includes(e.keyCode) && !dnakey.includes(e.keyCode)) {
+      e.preventDefault();
+    }
+}
+function inputcheckup(e, ths, nasel=false){
+    var start=ths.selectionStart;
+    var end = ths.selectionEnd;
+    var text=ths.value;
+    var text=text.toUpperCase();
+    var info = dnaorrna(ths, text, nasel);
+    var dnakey = info['key'], ntext = info['txt'];
+    if(ntext!=text){
+        ths.value=ntext
+        ths.setSelectionRange(start-(text.length - ntext.length),end-(text.length - ntext.length));
+    }else{
+        ths.value=ths.value.toUpperCase();
+        ths.setSelectionRange(start, end);
+    }
+}
 
-        $('resetrsf').mouseup(function(){
-          clearTimeout(pressTimer)
-          // Clear timeout
-          return false;
-        }).mousedown(function(){
-          // Set timeout
-          alert('hi');
-          pressTimer = window.setTimeout(function() {alert('held');},1000);
-          
-          return false; 
-        }).click(function(){ alert('his');return false; });*/
+function dnaorrna(ths, text, nasel){
+    var doDNA = true;
+    if(nasel){
+        if(document.getElementById('strand')!=null){
+            var strandType = getRadioVal(document.getElementById('strand'),'StrandType');
+            if(strandType == 'mRNA'){
+                doDNA = false;
+            }
+        }
+    }
+    if(doDNA){
+        if(['input1', 'input2'].includes(ths.id)){
+            var dnakey=[84, 189];
+            var text = text.replace(/-/g,'_');
+            var ntext=text.replace(/[^A|C|T|G|_]/g,"");
+        }else{
+            var dnakey=[84];
+            var ntext=text.replace(/[^A|C|T|G]/g,"");
+        }
+    }else{
+        var dnakey=[85];
+        var ntext=text.replace(/[^A|C|U|G]/g,"");
+    }
+    return {'key':dnakey, 'txt':ntext};
+}
 
+function hamminghelper(id){
+    if(id=='input1' || id=='input2'){
+        document.getElementById(id).value=document.getElementById(id).value.replace(/-/gi, "_");
+        document.getElementById('length'+id).innerHTML=document.getElementById(id).value.length;
+        if(document.getElementById('input1').value.length !== document.getElementById('input2').value.length){
+            document.getElementById('hstrlength1').setAttribute('color','red');
+            document.getElementById('hstrlength2').setAttribute('color','red');
+        }else{
+            document.getElementById('hstrlength1').setAttribute('color','green');
+            document.getElementById('hstrlength2').setAttribute('color','green');
+        }
+        
+    }
+}
 
 var loadingtime=null;
 function loadingscreen(toggle){
@@ -38,30 +115,28 @@ function loadingscreen(toggle){
 
 function hammingCounter(){
     loadingscreen('show');
-        var info = hammingCode(document.getElementById('input1').value,document.getElementById('input2').value);
-        if(info['error']=='true'){
-            alertify.error(info['message']).dismissOthers();
-        }else{
-            document.getElementById('HammingOutput').innerHTML="First DNA Strand: &nbsp;"+document.getElementById("input1").value+"<br>Second DNA Strand: "+document.getElementById("input2").value+"<br>Differences: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+info["diff"]+"<br><br>Number of Differences:<br>"+info["numdiff"];
-        }
+    var input1 = document.getElementById('input1'), input2 = document.getElementById('input2');
+    input1.value=input1.value.toUpperCase(), input2.value=input2.value.toUpperCase();
+    var info = hammingCode(input1.value,input2.value);
+    if(info['error']=='true'){
+        alertify.error(info['message']).dismissOthers();
+    }else{
+        document.getElementById('HammingOutput').innerHTML="First DNA Strand: &nbsp;"+input1.value+"<br>Second DNA Strand: "+input2.value+"<br>Differences: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+info["diff"]+"<br><br>Number of Differences:<br>"+info["numdiff"];
+    }
     var hide=setTimeout(function(){loadingscreen('hide')},1000);
 }
 
 function cutDNA(){
-loadingscreen('show');
-    if(document.getElementById("inputRSF").value!=''){
-        
-    
-        document.getElementById("inputRSF").value=document.getElementById("inputRSF").value.toUpperCase();
-        var info=restrictionSiteFinder(document.getElementById("inputRSF").value,'RE-','REa-','REb-');
+    loadingscreen('show');
+    var inputRSF=document.getElementById("inputRSF");
+    if(inputRSF.value!=''){
+        inputRSF.value=inputRSF.value.toUpperCase();
+        var info=restrictionSiteFinder(inputRSF.value,'RE-','REa-','REb-');
         console.log(info);
-        if(
-        info['error']=='true'){
+        if(info['error']=='true'){
                 alertify.error(info['message']).dismissOthers();
         }else{
-            //document.getElementById('RSFiOutput').value=document.getElementById("inputRSF").value;
-            //document.getElementById('RSFcOutput').value=info['cutDNA'];
-            document.getElementById('RSFeOutput').innerHTML="Input Strand:<br><br>"+document.getElementById("inputRSF").value+"<br><br>Cut Strand:<br><br>"+info['cutDNA']+"<br><br>Active Restriction Sites; Number of Sites:<br><br>"+info['REstuff'];
+            document.getElementById("RSFeOutput").innerHTML="Input Strand:<br><br>"+inputRSF.value+"<br><br>Cut Strand:<br><br>"+info['cutDNA']+"<br><br>Active Restriction Sites; Number of Sites:<br><br>"+info['REstuff'];
         }
     }else{
         alertify.error('The input is empty! Please enter something in the input.');
@@ -98,31 +173,11 @@ return false;
 
 }
 
-/*
-    $("#custkeys").hide(); 
-        $("#custkeys").click(function(){    
-        if($(this).attr("class") == "toggle"){
-            $(this).removeClass("toggle");
-            $(this).addClass("add_active");
-        }else{
-            $(this).removeClass("add_active");
-            $(this).addClass("toggle");
-        }
-        $("#custkeys").slideToggle("fast");
-        return false;
-    });
-    */
-
-
-
 function fscrollleft(){
-    //while(true){
         function pageScroll() {
             document.getElementById('input').scrollLeft=1;
             scrolldelay = setTimeout(pageScroll,10);
         }
-    
-    //}
     alertify.error(document.getElementById('input').scrollleft);
 }
 
@@ -134,6 +189,7 @@ function custkeys(btn){
     }
     document.getElementById(DNAinput).value=document.getElementById(DNAinput).value+btn.innerHTML;
     document.getElementById(DNAinput).scrollLeft=document.getElementById(DNAinput).scrollWidth;
+    hamminghelper(DNAinput);
 }
 
 function hamKey(){
@@ -149,88 +205,11 @@ function inputStrandConv(type){
         document.getElementById('custkeyTU').innerHTML='T';
     }
 }
-function caps(id){
-    if(id=='input1' || id=='input2'){
-        document.getElementById(id).value=document.getElementById(id).value.replace(/-/gi, "_");
-        document.getElementById(('lenght'+id)).innerHTML=document.getElementById((id)).value.length;
-        if(document.getElementById('input1').value.length !== document.getElementById('input2').value.length){
-            document.getElementById('hstrlength1').setAttribute('color','red');
-            document.getElementById('hstrlength2').setAttribute('color','red');
-        }else{
-            document.getElementById('hstrlength1').setAttribute('color','green');
-            document.getElementById('hstrlength2').setAttribute('color','green');
-        }
-        
-    }
-    document.getElementById(id).value = document.getElementById(id).value.toUpperCase();
-}
-function acceptChar(key){
-    if (key == 13) {
-        if(document.getElementById('convert')!=null){ 
-            document.getElementById('convert').click(); 
-        }
-        if(document.getElementById('cut')!=null){ 
-            document.getElementById('cut').click(); 
-        }
-        return false; 
-    }
-    if(key == 46){return true;}
-    if(key == 8){return true;}
-    if(key == 40){return true;}
-    if(key == 37){return true;}
-    if(key == 39){return true;}
-    if(key == 38){return true;}
-    if(key !== 65){
-        if(key !== 67){
-            if(key !== 71){
-                if(NAsel(key)==false){
-                    return false;
-                }
-            }
-        }
-    }
-    
-    function NAsel(key){
-        if(document.getElementById('strand')==null){
-            if(key == 84){
-                return true;
-            }
-            return false;
-        }
-        var strandType = getRadioVal(document.getElementById('strand'),'StrandType');
-        if(strandType == 'DNA'){
-            if(key == 84){return true;}
-        }else if(strandType == 'mRNA'){
-            if(key == 85){return true;}
-        }
-        return false;
-    }
-}function acceptCharh(key){
-    if (key == 13) { 
-        document.getElementById('compare').click(); 
-        return false; 
-    }
-    if(key == 46){return true;}
-    if(key == 8){return true;}
-    if(key == 40){return true;}
-    if(key == 37){return true;}
-    if(key == 39){return true;}
-    if(key == 38){return true;}
-    if(key == 84){return true;}
-    if(key == 189){return true;}
-    if(key !== 65){
-        if(key !== 67){
-            if(key !== 71){
-                return false;
-            }
-        }
-    }
-}
-
 
 function nac(){
-loadingscreen('show');
+    loadingscreen('show');
     var strandType = getRadioVal(document.getElementById('strand'),'StrandType');
+    document.getElementById('input').value = document.getElementById('input').value.toUpperCase();
     var info = converter(document.getElementById('input').value,strandType);
     if(info['error']=='true'){
         alertify.error(info['message']).dismissOthers();

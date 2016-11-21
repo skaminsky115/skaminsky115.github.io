@@ -175,7 +175,7 @@ function restrictionSiteFinder(DNA, restrictionSiteBaseSelected, restrictionSite
 				if(debug==true){console.log("'"+RSBS+i+"' is checked! Grabbing info...");}
 				REchecked.push(RSBS+i);
 				if(debug==true){console.log('REname='+document.getElementById(RSBN+i).value); console.log('REcode='+document.getElementById(RSBC+i).value)}
-				REcinfo[RSBS+i]={'REname':document.getElementById(RSBN+i).value,'REcode':document.getElementById(RSBC+i).value};
+				REcinfo[RSBS+i]={'REname':document.getElementById(RSBN+i).value,'REcode':document.getElementById(RSBC+i).value.toUpperCase().replace(/[^A|C|T|G]/g,"")};
 			}else{
 				if(debug==true){console.log("'"+RSBS+i+"' is not checked!");}
 			}
