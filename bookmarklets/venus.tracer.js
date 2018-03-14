@@ -15,18 +15,28 @@ function extendZeros(s) {
   }
   return s;
 }
-function numToBin(n, length) {
-    var bin = parseInt(n).toString(2);
-    bin = "0".repeat(length - bin.length) + bin;
-    sbin = "";
-    for (var i = 0; i < length; i++) {
-        if (i % 4 == 0 && i != 0) {
-            sbin += " ";
-        }
-        sbin += bin[i];
+function getBaseLog(x, y) {
+  return Math.log(y) / Math.log(x);
+}
+function numToBase(n, length) {
+    var amount = Math.pow(2, length);
+    length = getBaseLog(curNumBase, amount);
+    var num = parseInt(n).toString(curNumBase);
+    if (length - num.length > 0) {
+      num = "0".repeat(length - num.length) + num;
     }
-  return sbin;
-  return n.toString(16);
+    snum = "";
+    if (curNumBase == 2) {
+      for (var i = 0; i < length; i++) {
+          if (i % 4 == 0 && i != 0) {
+              snum += " ";
+          }
+          snum += num[i];
+      }
+    } else {
+      snum = num;
+    }
+  return snum;
 }
 var regs = [1, 2, 5, 6, 7, 8, 9, 10];
 var lin = 0;
@@ -49,7 +59,7 @@ function getOneTrace(additional) {
               s = extendZeros(s);
             }
         }
-        res += numToBin("0x" + s, 32) + "   ";
+        res += numToBase("0x" + s, 32) + "\t";
     }
     var bpc = Math.floor(driver.sim.state_0.pc / 4);
     if (additional == true) {
@@ -59,8 +69,8 @@ function getOneTrace(additional) {
     if (additional != true) {
       driver.step();
     }
-    var line = numToBin(lin, 16);
-    var pc = numToBin(bpc, 32);
+    var line = numToBase(lin, 16);
+    var pc = numToBase(bpc, 32);
     var inst = "0x00000000";
     if (additional != true) {
       var prevpc = driver.sim.preInstruction_0.array_9xgyxj$_0;
@@ -73,7 +83,7 @@ function getOneTrace(additional) {
         }
       }
     }
-    res += line + " " + pc + "  " + numToBin(inst, 32);
+    res += line + "\t" + pc + "\t" + numToBase(inst, 32);
     lin++;
     return res + newlinechar;
 }
@@ -143,8 +153,8 @@ async function generateTrace() {
     //document.write(res.join(""));
     //document.close();
     document.getElementById("trace-output").value = res.join("");
-    driver.dump();
-    document.getElementById("trace-dump").value = document.getElementById("console-output").value;
+    //driver.dump();
+    //document.getElementById("trace-dump").value = document.getElementById("console-output").value;
     openTrace();
     document.getElementById("alerts").innerHTML = "";
     return res;
@@ -157,6 +167,13 @@ function genTraceMain() {
     forcebreak = false;
     document.getElementById("alerts").innerHTML = "Generating trace...<br>(WARNING! Large traces may take a while!)";
     setTimeout(function(){
+      curNumBase = document.getElementById("numbase").value;
+      if (curNumBase < 2 || curNumBase == "") {
+        curNumBase = 2;
+      }
+      if (curNumBase > 32) {
+        curNumBase = 32;
+      }
       closeTrace();
       numBlankCommands = document.getElementById("numextra").value;
       if (numBlankCommands == "") {
@@ -244,6 +261,17 @@ function toggleThis(e) {
     e.value = "true";
   }
 }
+function validateBase(e) {
+  if (e.value == "") {
+    return;
+  }
+  if (e.value < 1) {
+    e.value = 2;
+  }
+  if (e.value > 32) {
+    e.value = 32;
+  }
+}
 function tracer() {
   var lielem = document.createElement('li');
   var aelem = document.createElement('a');
@@ -259,7 +287,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.0</font><br>
+            <font size="6px">Trace Generator v1.0.1</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
@@ -285,9 +313,21 @@ function tracer() {
      <div class="tile">
        <div class="tile is-parent">
          <article class="tile is-child is-primary" align="center">
-            Options!<br><br>
-            Number of extra lines after code is done:<br>
-            <input id="numextra" type="number" class="input is-small" style="width:360px;" onblur="" value=0 spellcheck="false"><br><br>
+            Options!
+            <center>
+            <table id="options" class="table" style="width:50%">
+              <thead>
+                <tr>
+                  <th><center>Number of extra lines<br>after code is done:</center></th>
+                  <th><center>Output Number's Base</center></th>
+                </tr>
+              </thead>
+                <tr>
+                  <th><center><input id="numextra" type="number" class="input is-small" style="width:180px;" onblur="" value=0 spellcheck="false"></center></th>
+                  <th><center><input id="numbase" type="number" class="input is-small" style="width:180px;" onblur="validateBase(this);" onkeyup="validateBase(this);" value=2 spellcheck="false"></center></th>
+                </tr>
+            </table>
+            </center>
             Set SP to 0 by default? (Green = True; White = false)<br>
             <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
          </article>
@@ -330,7 +370,7 @@ function tracer() {
   `;
   document.body.insertBefore(noticelm, document.body.children[0]);
 }
-
+var curNumBase = 2;
 function removeTracer() {
   document.getElementById("trace-tab").remove();
   document.getElementById("alertsDiv").remove();
