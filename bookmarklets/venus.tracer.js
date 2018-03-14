@@ -100,7 +100,7 @@ async function generateTrace() {
     try {
         var ecallExit = 0;
         var getecall = 0;
-      while(1) {
+      while(canProceed(lin) && lin < 200) {
         driver.step();
         var selected = document.getElementsByClassName("is-selected")[0];
         if (selected != null && selected.id != null && selected.id.indexOf("instruction-") != -1) {
@@ -140,7 +140,7 @@ async function generateTrace() {
      }
     } catch (e) { console.log(e); }
     try {
-      for (var i = -1; i < numBlankCommands; i++) {
+      for (var i = -1;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin))  && lin < 200; i++) {
        res.push(getOneTrace(true));
        console.log(res);
      }
@@ -159,12 +159,14 @@ async function generateTrace() {
     document.getElementById("alerts").innerHTML = "";
     return res;
 };
+function canProceed(n) {
+  return (totalCommands <= 0) || (!(totalCommands <= 0) && (n - 1) < totalCommands);
+}
 var numBlankCommands = 0;
-var forcebreak = false;
+var totalCommands = -1;
 function genTraceMain() {
     var tracebut = document.getElementById("trace-trace");
     tracebut.classList.add("is-loading");
-    forcebreak = false;
     document.getElementById("alerts").innerHTML = "Generating trace...<br>(WARNING! Large traces may take a while!)";
     setTimeout(function(){
       curNumBase = document.getElementById("numbase").value;
@@ -178,6 +180,10 @@ function genTraceMain() {
       numBlankCommands = document.getElementById("numextra").value;
       if (numBlankCommands == "") {
         numBlankCommands = 0;
+      }
+      totalCommands = document.getElementById("numtot").value;
+      if (totalCommands < 0) {
+
       }
       codeMirror.save(); 
       driver.openSimulator();
@@ -287,7 +293,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.1</font><br>
+            <font size="6px">Trace Generator v1.0.2</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
@@ -319,11 +325,13 @@ function tracer() {
               <thead>
                 <tr>
                   <th><center>Number of extra lines<br>after code is done:</center></th>
+                  <th><center>Total number of commands:<br>(Negative means ignored)</center></th>
                   <th><center>Output Number's Base</center></th>
                 </tr>
               </thead>
                 <tr>
                   <th><center><input id="numextra" type="number" class="input is-small" style="width:180px;" onblur="" value=0 spellcheck="false"></center></th>
+                  <th><center><input id="numtot" type="number" class="input is-small" style="width:180px;" onblur="" value=-1 spellcheck="false"></center></th>
                   <th><center><input id="numbase" type="number" class="input is-small" style="width:180px;" onblur="validateBase(this);" onkeyup="validateBase(this);" value=2 spellcheck="false"></center></th>
                 </tr>
             </table>
