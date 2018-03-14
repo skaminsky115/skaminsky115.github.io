@@ -336,8 +336,10 @@ function tracer() {
                 </tr>
             </table>
             </center>
-            Set SP to 0 by default? (Green = True; White = false)<br>
-            <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
+            Set SP to 0 before the trace?<br>
+            <font size="1px">This is because Venus already sets the SP before a run.</font><br>
+            <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button><br>
+            <font size="1px">(Green = True; White = false)</font>
          </article>
        </div>
      </div>
