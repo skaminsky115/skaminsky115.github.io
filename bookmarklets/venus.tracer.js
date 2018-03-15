@@ -4,10 +4,11 @@
 var debug = true;
 var newlinechar = "\n";
 function getVal(i) {
-    var id = "reg-" + i + "-val";
-    var el = document.getElementById(id);
-    driver.saveRegister(el, i);
-    return el.value;
+//     var id = "reg-" + i + "-val";
+//     var el = document.getElementById(id);
+//     driver.saveRegister(el, i);
+//     return el.value;
+  return registerInteract(i, "r");
 }
 function extendZeros(s) {
   var z = 8-s.length;
@@ -51,15 +52,15 @@ function getOneTrace(additional) {
     for (var j in regs) {
         i = regs[j];
         var s = getVal(i);
-       if (s.length == 0) {
-            s = "00000000";
-        } else {
-            s = s.substring(2);
-            if (i == 2 && false) {
-              s = (parseInt(s, 16)-parseInt("7ffffff0", 16)).toString(16);
-              s = extendZeros(s);
-            }
-        }
+//        if (s.length == 0) {
+//             s = "00000000";
+//         } else {
+//             s = s.substring(2);
+//             if (i == 2 && false) {
+//               s = (parseInt(s, 16)-parseInt("7ffffff0", 16)).toString(16);
+//               s = extendZeros(s);
+//             }
+//         }
         res += numToBase("0x" + s, 32) + "\t";
     }
     var bpc = Math.floor(driver.sim.state_0.pc / 4);
@@ -109,9 +110,10 @@ async function generateTrace() {
     extra = 0;
     driver.reset();
     if (document.getElementById("spzero").value == "true") {
-      var ell = document.getElementById("reg-2-val");
-      ell.value = "0x00000000";
-      driver.saveRegister(ell, 2);
+//       var ell = document.getElementById("reg-2-val");
+//       ell.value = "0x00000000";
+//       driver.saveRegister(ell, 2);
+         registerInteract(2, 0);
     }
     var res = [];
     var runNextTrace = 1;
@@ -236,25 +238,30 @@ function genTraceMain() {
 };
 function registerInteract(r, v) {
   var dregs = driver.sim.state_0.regs_0;
-  
+  if (v == "r") {
+    return dregs[r].toString(16);
+  }
+  dregs[r] = parseInt(v);
 }
 var registers = new Array(32);
 var saveRegs = false;
 function saveRegisters() {
   for (var i = 0; i < 32; i++) {
-    var id = "reg-" + i + "-val";
-    var el = document.getElementById(id);
-    registers[i] = el.value;
+//     var id = "reg-" + i + "-val";
+//     var el = document.getElementById(id);
+//     registers[i] = el.value;
+       registers[i] = registerInteract(i, "r");
   }
 }
 function loadRegisters() {
   for (var i = 0; i < 32; i++) {
-    var id = "reg-" + i + "-val";
-    var el = document.getElementById(id);
-    if (registers[i] != "") {
-      el.value = registers[i];
-      driver.saveRegister(el, i);
-    }
+//     var id = "reg-" + i + "-val";
+//     var el = document.getElementById(id);
+//     if (registers[i] != "") {
+//       el.value = registers[i];
+//       driver.saveRegister(el, i);
+//     }
+    registerInteract(i, registers[i]);
   }
 }
 function resetRegisters() {
