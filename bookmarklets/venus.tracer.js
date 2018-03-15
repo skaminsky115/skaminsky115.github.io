@@ -219,8 +219,10 @@ function loadRegisters() {
   for (var i = 0; i < 32; i++) {
     var id = "reg-" + i + "-val";
     var el = document.getElementById(id);
-    el.value = registers[i];
-    driver.saveRegister(el, i);
+    if (registers[i] != "") {
+      el.value = registers[i];
+      driver.saveRegister(el, i);
+    }
   }
 }
 function CopyToClipboard(containerid) {
@@ -317,7 +319,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.3</font><br>
+            <font size="6px">Trace Generator v1.0.4</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
