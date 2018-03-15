@@ -1,6 +1,7 @@
 /*
     Created by Stephan Kaminsky
 */
+var debug = false;
 var newlinechar = "\n";
 function getVal(i) {
     var id = "reg-" + i + "-val";
@@ -120,7 +121,9 @@ async function generateTrace() {
         if (!getecall) {
             var consOut = document.getElementById("console-output");
             if (consOut != null) {
+              if (debug) {
                 console.log(consOut.value);
+              }
                 res.push(consOut.value);
                 consOut.value = "";
             }
@@ -136,19 +139,29 @@ async function generateTrace() {
             ecallExit = (ecallExit == -1) ? -1 : 0;
         }
         res.push(getOneTrace(false));
-        console.log(res);
+        if (debug) {
+          console.log(res);
+        }
      }
-    } catch (e) { console.log(e); }
+    } catch (e) { 
+      if (debug) {
+        console.log(e);
+      }
+    }
     try {
       for (var i = -1;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin)); i++) {
        res.push(getOneTrace(true));
-       console.log(res);
+       if (debug) {
+        console.log(res);
+       }
      }
     }
     catch(e) {
-      console.log(e);
+      if (debug) {
+        console.log(e);
+      }
     }
-    document.getElementById("alerts").innerHTML = "Trace done! Finishing up...";
+    setAlert("Trace done! Finishing up...");
     res.push(newlinechar);
     //document.write(res.join(""));
     //document.close();
@@ -156,7 +169,7 @@ async function generateTrace() {
     //driver.dump();
     //document.getElementById("trace-dump").value = document.getElementById("console-output").value;
     openTrace();
-    document.getElementById("alerts").innerHTML = "";
+    setAlert("");
     return res;
 };
 function canProceed(n) {
@@ -167,7 +180,7 @@ var totalCommands = -1;
 function genTraceMain() {
     var tracebut = document.getElementById("trace-trace");
     tracebut.classList.add("is-loading");
-    document.getElementById("alerts").innerHTML = "Generating trace...<br>(WARNING! Large traces may take a while!)";
+    //setAlert("Generating trace...<br>(WARNING! Large traces may take a while!)");
     setTimeout(function(){
       curNumBase = document.getElementById("numbase").value;
       if (curNumBase < 2 || curNumBase == "") {
@@ -243,7 +256,7 @@ function closeTrace() {
   tracetab.setAttribute("class", "");
 }
 function ddump() {
-  document.getElementById("alerts").innerHTML = "Dumping...<br>(WARNING! Large dumps may take a while!)";
+  //setAlert("Dumping...<br>(WARNING! Large dumps may take a while!)");
   var dumpbut = document.getElementById("trace-dump");
   dumpbut.classList.add("is-loading");
   setTimeout(function(){
@@ -255,7 +268,7 @@ function ddump() {
     document.getElementById("trace-dump-output").value = trace;
     openTrace();
     dumpbut.classList.remove("is-loading");
-    document.getElementById("alerts").innerHTML = "";
+    setAlert("");
   }, 50);
 }
 function toggleThis(e) {
@@ -278,6 +291,11 @@ function validateBase(e) {
     e.value = 32;
   }
 }
+
+function setAlert(m) {
+  document.getElementById("alerts").innerHTML = m;
+}
+
 function tracer() {
   var lielem = document.createElement('li');
   var aelem = document.createElement('a');
@@ -368,7 +386,11 @@ function tracer() {
   var simulatortab = document.getElementById("simulator-tab");
   editortab.setAttribute("onclick", editortab.getAttribute("onclick") + "; closeTrace();")
   simulatortab.setAttribute("onclick", simulatortab.getAttribute("onclick") + "; closeTrace();")
-  window.alert = function(){console.log("alert")};
+  window.alert = function(){
+    if (debug) {
+      console.log("alert")
+    }
+  };
 
   var noticelm = document.createElement("div");
   noticelm.setAttribute("id", "alertsDiv");
