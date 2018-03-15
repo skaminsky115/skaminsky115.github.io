@@ -43,7 +43,7 @@ function numToBase(n, length) {
 var regs = [1, 2, 5, 6, 7, 8, 9, 10];
 var lin = 0;
 var extra = 0;
-function getOneTrace(additional) {
+function getOneTrace(additional, final) {
     var res = "";
     var vals = [];
     if (additional != true) {
@@ -68,37 +68,41 @@ function getOneTrace(additional) {
       bpc += extra;
       extra++;
     }
-    if (additional != true) {
-      driver.step();
-    }
+    
     var line = numToBase(lin, 16);
     var pc = numToBase(bpc, 32);
     var inst = "0x00000000";
-    if (additional != true) {
+    if (additional != true || final == true) {
       var prevpc = 0;
       var prevcommand = "";
       if (instfirst) {
         prevpc = driver.sim.preInstruction_0.array_9xgyxj$_0;
-        prevcommand = document.getElementById("instruction-" + Math.floor(prevpc[prevpc.length - 1]["pc"] / 4));
+        prevpc = Math.floor(prevpc[prevpc.length - 1]["pc"] / 4);
+        //prevcommand = document.getElementById("instruction-" + Math.floor(prevpc[prevpc.length - 1]["pc"] / 4));
       } else {
-        driver.undo();
         driver.undo();
         prevpc = driver.sim.state_0.pc;
         try{
           driver.step();
-          driver.step();
         } catch(e) {
 
         }
-        prevcommand = document.getElementById("instruction-" + Math.floor(prevpc / 4));
+        prevpc = Math.floor(prevpc / 4);
+        //prevcommand = document.getElementById("instruction-" + Math.floor(prevpc / 4));
       }
-      if (prevcommand != null) {
-        var basecode = prevcommand.getElementsByTagName("td")[0].innerHTML;
-        if (basecode != null) {
-            //inst
-            inst = basecode;
-        }
-      }
+      var instmem = driver.sim.linkedProgram.prog.insts.array_9xgyxj$_0;
+      inst = instmem[prevpc]["encoding_0"];
+//       if (prevcommand != null) {
+//         var basecode = prevcommand.getElementsByTagName("td")[0].innerHTML;
+//         if (basecode != null) {
+//             //inst
+//             inst = basecode;
+//         }
+//       }
+      
+    }
+    if (additional != true) {
+      driver.step();
     }
     res += line + "\t" + pc + "\t" + numToBase(inst, 32);
     lin++;
@@ -160,7 +164,7 @@ async function generateTrace() {
         } else {
             ecallExit = (ecallExit == -1) ? -1 : 0;
         }
-        res.push(getOneTrace(false));
+        res.push(getOneTrace(false, false));
         if (debug) {
           console.log(res);
         }
@@ -170,13 +174,16 @@ async function generateTrace() {
         console.log(e);
       }
     }
+    if (!instfirst) {
+      res.push(getOneTrace(true, true));
+    }
     try {
       var ii = 0;
       if (instfirst) {
         ii = -1;
       }
       for (var i = ii;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin)); i++) {
-       res.push(getOneTrace(true));
+       res.push(getOneTrace(true, false));
        if (debug) {
         console.log(res);
        }
@@ -368,7 +375,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.4</font><br>
+            <font size="6px">Trace Generator v1.0.5</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
