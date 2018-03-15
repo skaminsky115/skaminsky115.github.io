@@ -1,7 +1,7 @@
 /*
     Created by Stephan Kaminsky
 */
-var debug = false;
+var debug = true;
 var newlinechar = "\n";
 function getVal(i) {
     var id = "reg-" + i + "-val";
@@ -74,8 +74,23 @@ function getOneTrace(additional) {
     var pc = numToBase(bpc, 32);
     var inst = "0x00000000";
     if (additional != true) {
-      var prevpc = driver.sim.preInstruction_0.array_9xgyxj$_0;
-      var prevcommand = document.getElementById("instruction-" + Math.floor(prevpc[prevpc.length - 1]["pc"] / 4));
+      var prevpc = 0;
+      var prevcommand = "";
+      if (instfirst) {
+        prevpc = driver.sim.preInstruction_0.array_9xgyxj$_0;
+        prevcommand = document.getElementById("instruction-" + Math.floor(prevpc[prevpc.length - 1]["pc"] / 4));
+      } else {
+        driver.undo();
+        driver.undo();
+        prevpc = driver.sim.state_0.pc;
+        try{
+          driver.step();
+          driver.step();
+        } catch(e) {
+
+        }
+        prevcommand = document.getElementById("instruction-" + Math.floor(prevpc / 4));
+      }
       if (prevcommand != null) {
         var basecode = prevcommand.getElementsByTagName("td")[0].innerHTML;
         if (basecode != null) {
@@ -88,6 +103,7 @@ function getOneTrace(additional) {
     lin++;
     return res + newlinechar;
 }
+
 async function generateTrace() {
     lin = 0;
     extra = 0;
@@ -102,8 +118,11 @@ async function generateTrace() {
     try {
         var ecallExit = 0;
         var getecall = 0;
+        if (!instfirst) {
+          driver.step();
+        }
       while(canProceed(lin)) {
-        driver.step();
+       driver.step();
         var selected = document.getElementsByClassName("is-selected")[0];
         if (selected != null && selected.id != null && selected.id.indexOf("instruction-") != -1) {
             var basecode = selected.getElementsByTagName("td")[1].innerHTML;
@@ -150,7 +169,11 @@ async function generateTrace() {
       }
     }
     try {
-      for (var i = -1;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin)); i++) {
+      var ii = 0;
+      if (instfirst) {
+        ii = -1;
+      }
+      for (var i = ii;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin)); i++) {
        res.push(getOneTrace(true));
        if (debug) {
         console.log(res);
@@ -170,17 +193,22 @@ async function generateTrace() {
     //driver.dump();
     //document.getElementById("trace-dump").value = document.getElementById("console-output").value;
     openTrace();
+    tracing = false;
     setAlert("");
-    return res;
+    //return res;
 };
 function canProceed(n) {
   return (totalCommands <= 0) || (!(totalCommands <= 0) && (n - 1) < totalCommands);
 }
 var numBlankCommands = 0;
 var totalCommands = -1;
+var instfirst = false;
+var tracing = false;
 function genTraceMain() {
+    tracing = true;
     var tracebut = document.getElementById("trace-trace");
     tracebut.classList.add("is-loading");
+    instfirst = document.getElementById("inst-first").value == "true";
     //setAlert("Generating trace...<br>(WARNING! Large traces may take a while!)");
     setTimeout(function(){
       curNumBase = document.getElementById("numbase").value;
@@ -202,10 +230,14 @@ function genTraceMain() {
       codeMirror.save(); 
       driver.openSimulator();
       openTrace();
-      setTimeout(function(){generateTrace(); tracebut.classList.remove("is-loading");}, 50);
+      setTimeout(function(){generateTrace(); tracebut.classList.remove("is-loading"); loadRegisters();}, 50);
     }, 50);
 
 };
+function registerInteract(r, v) {
+  var dregs = driver.sim.state_0.regs_0;
+  
+}
 var registers = new Array(32);
 var saveRegs = false;
 function saveRegisters() {
@@ -224,6 +256,16 @@ function loadRegisters() {
       driver.saveRegister(el, i);
     }
   }
+}
+function resetRegisters() {
+  var sst = saveRegs;
+  tracing = true;
+  saveRegs = false;
+  driver.openSimulator();
+  openTrace();
+  saveRegisters();
+  tracing = false;
+  saveRegs = sst;
 }
 function CopyToClipboard(containerid) {
   var copyText = document.getElementById(containerid);
@@ -347,7 +389,7 @@ function tracer() {
          <article class="tile is-child is-primary" align="center">
             Options!
             <center>
-            <table id="options" class="table" style="width:50%">
+            <table id="options" class="table" style="width:50%; margin-bottom: 0;">
               <thead>
                 <tr>
                   <th><center>Number of extra lines<br>after code is done:</center></th>
@@ -363,12 +405,13 @@ function tracer() {
             </table>
             </center>
             <center>
+            <font size="2px" color="green">(&dArr; Green = True; White = false &dArr;)</font>
             <table id="options2" class="table" style="width:50%; margin-bottom: 0;">
               <thead>
                 <tr>
-                  <th><center>Set SP to 0 before the trace?*</center></th>
-                  <th><center>Save Registers?**</center></th>
-                  <th><center></center></th>
+                  <th><center>Set SP to 0<br>before the trace?*</center></th>
+                  <th><center>Save Registers?**<br><a onclick="resetRegisters();">Click to reset</a></center></th>
+                  <th><center>Instruction first?***</center></th>
                 </tr>
               </thead>
                 <tr>
@@ -376,15 +419,15 @@ function tracer() {
                     <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
                   </center></th>
                   <th><center><button id="save-regs" class="button is-primary" onclick="toggleThis(this)" value="true">Save</button></center></th>
-                  <th><center></center></th>
+                  <th><center><button id="inst-first" class="button is-primary" onclick="toggleThis(this)" value="true">Inst First</button></center></th>
                 </tr>
             </table>
             <font size="2px">Notes:</font>
             <font size="1px">
               <p>*This is because Venus already sets the SP before a run.</p>
               <p>**Venus resets the registers before a run. This will allow you to preset register values and then run with those changes.</p>
+              <p>***This will print the register values BEFORE this instruction if true.<br>If false, it will print the register values at the same 'place' as the instruction.</p>
             </font>
-            <font size="1px" color="green">(Green = True; White = false)</font>
             </center>
          </article>
        </div>
@@ -438,7 +481,9 @@ function hijackFunctions() {
   setTimeout(function(){
   driver.openSimulator = function(){
     saveRegs = document.getElementById("save-regs").value;
-    saveRegisters();
+    if (!tracing) {
+      saveRegisters();
+    }
     driver.os();
     if(saveRegs == "true") {
       loadRegisters();
