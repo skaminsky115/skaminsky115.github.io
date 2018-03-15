@@ -95,6 +95,7 @@ async function generateTrace() {
     if (document.getElementById("spzero").value == "true") {
       var ell = document.getElementById("reg-2-val");
       ell.value = "0x00000000";
+      driver.saveRegister(ell, 2);
     }
     var res = [];
     var runNextTrace = 1;
@@ -205,6 +206,23 @@ function genTraceMain() {
     }, 50);
 
 };
+var registers = new Array(32);
+var saveRegs = false;
+function saveRegisters() {
+  for (var i = 0; i < 32; i++) {
+    var id = "reg-" + i + "-val";
+    var el = document.getElementById(id);
+    registers[i] = el.value;
+  }
+}
+function loadRegisters() {
+  for (var i = 0; i < 32; i++) {
+    var id = "reg-" + i + "-val";
+    var el = document.getElementById(id);
+    el.value = registers[i];
+    driver.saveRegister(el, i);
+  }
+}
 function CopyToClipboard(containerid) {
   var copyText = document.getElementById(containerid);
 
@@ -214,19 +232,7 @@ function CopyToClipboard(containerid) {
   /* Copy the text inside the text field */
   document.execCommand("Copy");
   return
-if (document.selection) { 
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById(containerid));
-    range.select().createTextRange();
-    document.execCommand("copy"); 
-
-} else if (window.getSelection) {
-    var range = document.createRange();
-     range.selectNode(document.getElementById(containerid));
-     window.getSelection().addRange(range);
-     document.execCommand("copy");
-     alert("text copied") 
-}}
+}
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
@@ -241,7 +247,7 @@ function openTrace() {
   var trace = document.getElementById("trace-tab-view");
   var simulator = document.getElementById("simulator-tab-view");
   
-  //codeMirror.save(); 
+  codeMirror.save(); 
   driver.openSimulator();
   simulatortab.setAttribute("class", "");
   tracetab.setAttribute("class", "is-active");
@@ -311,7 +317,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.2</font><br>
+            <font size="6px">Trace Generator v1.0.3</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
@@ -354,10 +360,30 @@ function tracer() {
                 </tr>
             </table>
             </center>
-            Set SP to 0 before the trace?<br>
-            <font size="1px">This is because Venus already sets the SP before a run.</font><br>
-            <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button><br>
-            <font size="1px">(Green = True; White = false)</font>
+            <center>
+            <table id="options2" class="table" style="width:50%; margin-bottom: 0;">
+              <thead>
+                <tr>
+                  <th><center>Set SP to 0 before the trace?*</center></th>
+                  <th><center>Save Registers?**</center></th>
+                  <th><center></center></th>
+                </tr>
+              </thead>
+                <tr>
+                  <th><center>
+                    <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
+                  </center></th>
+                  <th><center><button id="save-regs" class="button is-primary" onclick="toggleThis(this)" value="true">Save</button></center></th>
+                  <th><center></center></th>
+                </tr>
+            </table>
+            <font size="2px">Notes:</font>
+            <font size="1px">
+              <p>*This is because Venus already sets the SP before a run.</p>
+              <p>**Venus resets the registers before a run. This will allow you to preset register values and then run with those changes.</p>
+            </font>
+            <font size="1px" color="green">(Green = True; White = false)</font>
+            </center>
          </article>
        </div>
      </div>
@@ -386,11 +412,7 @@ function tracer() {
   var simulatortab = document.getElementById("simulator-tab");
   editortab.setAttribute("onclick", editortab.getAttribute("onclick") + "; closeTrace();")
   simulatortab.setAttribute("onclick", simulatortab.getAttribute("onclick") + "; closeTrace();")
-  window.alert = function(){
-    if (debug) {
-      console.log("alert")
-    }
-  };
+  
 
   var noticelm = document.createElement("div");
   noticelm.setAttribute("id", "alertsDiv");
@@ -401,12 +423,32 @@ function tracer() {
     </center>
   `;
   document.body.insertBefore(noticelm, document.body.children[0]);
+  saveRegisters();
+  hijackFunctions();
+}
+function hijackFunctions() {
+  window.alert = function(){
+    if (debug) {
+      console.log("alert")
+    }
+  };
+  driver.os = driver.openSimulator;
+  setTimeout(function(){
+  driver.openSimulator = function(){
+    saveRegs = document.getElementById("save-regs").value;
+    saveRegisters();
+    driver.os();
+    if(saveRegs == "true") {
+      loadRegisters();
+    }
+  };}, 10);
 }
 var curNumBase = 2;
 function removeTracer() {
   document.getElementById("trace-tab").remove();
   document.getElementById("alertsDiv").remove();
   document.getElementById("trace-tab-view").remove();
+  driver.openSimulator = driver.os;
 }
 
 function mainTrace() {
