@@ -326,7 +326,7 @@ function tracer() {
                 <tr>
                   <th><center>Number of extra lines<br>after code is done:</center></th>
                   <th><center>Total number of commands:<br>(Negative means ignored)</center></th>
-                  <th><center>Output Number's Base</center></th>
+                  <th><center>Output Number's Base<br>(2-32)</center></th>
                 </tr>
               </thead>
                 <tr>
