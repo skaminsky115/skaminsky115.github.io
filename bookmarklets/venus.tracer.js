@@ -100,7 +100,7 @@ async function generateTrace() {
     try {
         var ecallExit = 0;
         var getecall = 0;
-      while(canProceed(lin) && lin < 200) {
+      while(canProceed(lin)) {
         driver.step();
         var selected = document.getElementsByClassName("is-selected")[0];
         if (selected != null && selected.id != null && selected.id.indexOf("instruction-") != -1) {
@@ -140,7 +140,7 @@ async function generateTrace() {
      }
     } catch (e) { console.log(e); }
     try {
-      for (var i = -1;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin))  && lin < 200; i++) {
+      for (var i = -1;((i < numBlankCommands || (((i - 1) < totalCommands) && totalCommands > 0)) && canProceed(lin)); i++) {
        res.push(getOneTrace(true));
        console.log(res);
      }
