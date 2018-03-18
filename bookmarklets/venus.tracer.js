@@ -119,7 +119,7 @@ function getOneTrace(additional, final) {
     if (additional != true) {
       driver.step();
     }
-    res += line + "\t" + pc + "\t" + numToBase(inst, 32, 10, false);
+    res += line + "\t" + pc + "\t" + numToBase(inst, 32, 10, true);
     lin++;
     return res + newlinechar;
 }
@@ -403,7 +403,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.8</font><br>
+            <font size="6px">Trace Generator v1.0.9</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
