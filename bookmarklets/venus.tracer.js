@@ -210,12 +210,13 @@ async function generateTrace() {
       }
     }
     setAlert("Trace done! Finishing up...");
-    res.push(newlinechar);
+    //res.push(newlinechar);
     //document.write(res.join(""));
     //document.close();
     document.getElementById("trace-output").value = res.join("");
     //driver.dump();
     //document.getElementById("trace-dump").value = document.getElementById("console-output").value;
+    ddump();
     openTrace();
     tracing = false;
     setAlert("");
@@ -344,7 +345,7 @@ function ddump() {
     driver.openSimulator();
     driver.dump();
     var trace = document.getElementById("console-output").value;
-    document.getElementById("trace-dump-output").value = trace;
+    document.getElementById("trace-dump-output").value = "v2.0 raw\n" + trace;
     openTrace();
     dumpbut.classList.remove("is-loading");
     setAlert("");
@@ -370,7 +371,19 @@ function validateBase(e) {
     e.value = 32;
   }
 }
+function downloadtrace(id, filename) {
+  var text = document.getElementById(id).value;
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
 
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 function setAlert(m) {
   document.getElementById("alerts").innerHTML = m;
 }
@@ -390,7 +403,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.7</font><br>
+            <font size="6px">Trace Generator v1.0.8</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
@@ -463,14 +476,16 @@ function tracer() {
      </div>
      <div class="tile is-parent">
       <article class="tile is-child">
-        Trace:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-output')">Copy!</a>
+        Trace:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-output', 'trace.out')">Download!</a>
+        <br>
+        <font size="2px">If you have issues with tabs not copying, you should click the download button instead. For some reason, tabs are not always copying for me.</font>
         <br>
         <textarea id="trace-output" class="textarea" placeholder="trace output" readonly=""></textarea>
       </article>
     </div>
     <div class="tile is-parent">
       <article class="tile is-child">
-        Trace Dump:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-dump-output')">Copy!</a>
+        Trace Dump:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-dump-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-dump-output', 'dump.hex')">Download!</a>
         <br>
         <textarea id="trace-dump-output" class="textarea" placeholder="trace dump output" readonly=""></textarea>
       </article>
