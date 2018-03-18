@@ -27,13 +27,18 @@ function decimalToHexString(number)
         number = 0xFFFFFFFF + number + 1;
     }
 
-    return number.toString(16).toUpperCase();
+    return number.toString(16).toUpperCase().substring(0,8);
 }
-function numToBase(n, length, base) {
+function numToBase(n, length, base, signextend) {
     var amount = Math.pow(2, length);
     length = getBaseLog(curNumBase, amount);
-    var num = parseInt(parseInt(n, base).toString(10), 10);
-    num = parseInt(decimalToHexString(num), 16).toString(curNumBase);
+    var num = 0;
+    if (signextend) {
+      num = parseInt(parseInt(n, base).toString(10), 10);
+      num = parseInt(decimalToHexString(num), 16).toString(curNumBase);
+    } else {
+      num = parseInt(n, base).toString(curNumBase);
+    }
     if (length - num.length > 0) {
       num = "0".repeat(length - num.length) + num;
     }
@@ -71,7 +76,7 @@ function getOneTrace(additional, final) {
 //               s = extendZeros(s);
 //             }
 //         }
-        res += numToBase(s, 32, 16) + "\t";
+        res += numToBase(s, 32, 16, true) + "\t";
     }
     var bpc = Math.floor(driver.sim.state_0.pc / 4);
     if (additional == true) {
@@ -79,8 +84,8 @@ function getOneTrace(additional, final) {
       extra++;
     }
     
-    var line = numToBase(lin, 16, 10);
-    var pc = numToBase(bpc, 32, 10);
+    var line = numToBase(lin, 16, 10, false);
+    var pc = numToBase(bpc, 32, 10, false);
     var inst = "0x00000000";
     if (additional != true || final == true) {
       var prevpc = 0;
@@ -114,7 +119,7 @@ function getOneTrace(additional, final) {
     if (additional != true) {
       driver.step();
     }
-    res += line + "\t" + pc + "\t" + numToBase(inst, 32, 16);
+    res += line + "\t" + pc + "\t" + numToBase(inst, 32, 10, false);
     lin++;
     return res + newlinechar;
 }
@@ -385,7 +390,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.5</font><br>
+            <font size="6px">Trace Generator v1.0.7</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
