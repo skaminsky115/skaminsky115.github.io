@@ -1,7 +1,7 @@
 /*
     Created by Stephan Kaminsky
 */
-var debug = true;
+var debug = false;
 var newlinechar = "\n";
 function getVal(i) {
 //     var id = "reg-" + i + "-val";
@@ -20,10 +20,20 @@ function extendZeros(s) {
 function getBaseLog(x, y) {
   return Math.log(y) / Math.log(x);
 }
-function numToBase(n, length) {
+function decimalToHexString(number)
+{
+    if (number < 0)
+    {
+        number = 0xFFFFFFFF + number + 1;
+    }
+
+    return number.toString(16).toUpperCase();
+}
+function numToBase(n, length, base) {
     var amount = Math.pow(2, length);
     length = getBaseLog(curNumBase, amount);
-    var num = parseInt(n).toString(curNumBase);
+    var num = parseInt(parseInt(n, base).toString(10), 10);
+    num = parseInt(decimalToHexString(num), 16).toString(curNumBase);
     if (length - num.length > 0) {
       num = "0".repeat(length - num.length) + num;
     }
@@ -61,7 +71,7 @@ function getOneTrace(additional, final) {
 //               s = extendZeros(s);
 //             }
 //         }
-        res += numToBase("0x" + s, 32) + "\t";
+        res += numToBase(s, 32, 16) + "\t";
     }
     var bpc = Math.floor(driver.sim.state_0.pc / 4);
     if (additional == true) {
@@ -69,8 +79,8 @@ function getOneTrace(additional, final) {
       extra++;
     }
     
-    var line = numToBase(lin, 16);
-    var pc = numToBase(bpc, 32);
+    var line = numToBase(lin, 16, 10);
+    var pc = numToBase(bpc, 32, 10);
     var inst = "0x00000000";
     if (additional != true || final == true) {
       var prevpc = 0;
@@ -104,7 +114,7 @@ function getOneTrace(additional, final) {
     if (additional != true) {
       driver.step();
     }
-    res += line + "\t" + pc + "\t" + numToBase(inst, 32);
+    res += line + "\t" + pc + "\t" + numToBase(inst, 32, 16);
     lin++;
     return res + newlinechar;
 }
@@ -482,6 +492,9 @@ function tracer() {
     </center>
   `;
   document.body.insertBefore(noticelm, document.body.children[0]);
+  codeMirror.save();
+  driver.openSimulator();
+  driver.openEditor();
   saveRegisters();
   hijackFunctions();
 }
