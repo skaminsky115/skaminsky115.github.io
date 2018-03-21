@@ -460,7 +460,7 @@ function tracer() {
                   <th><center>
                     <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
                   </center></th>
-                  <th><center><button id="save-regs" class="button is-primary" onclick="toggleThis(this)" value="true">Save</button></center></th>
+                  <th><center><button id="save-regs" class="button" onclick="toggleThis(this)" value="false" disabled>Save</button></center></th>
                   <th><center><button id="inst-first" class="button is-primary" onclick="toggleThis(this)" value="true">Inst First</button></center></th>
                 </tr>
             </table>
