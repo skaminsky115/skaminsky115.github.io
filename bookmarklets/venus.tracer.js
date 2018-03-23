@@ -323,10 +323,12 @@ function openTrace() {
   
   codeMirror.save(); 
   driver.openSimulator();
-  simulatortab.setAttribute("class", "");
-  tracetab.setAttribute("class", "is-active");
-  simulator.style.display = "none";
-  trace.style.display = "block";
+  if (simulatortab.classList.contains("is-active")) {
+    simulatortab.setAttribute("class", "");
+    tracetab.setAttribute("class", "is-active");
+    simulator.style.display = "none";
+    trace.style.display = "block";
+  }
 }
 function closeTrace() {
   var tracetab = document.getElementById("trace-tab");
@@ -337,6 +339,12 @@ function closeTrace() {
 }
 function ddump() {
   //setAlert("Dumping...<br>(WARNING! Large dumps may take a while!)");
+  var walert = window.alert;
+  window.alert = function(){
+    if (debug) {
+      console.log("alert")
+    }
+  };
   var dumpbut = document.getElementById("trace-dump");
   dumpbut.classList.add("is-loading");
   setTimeout(function(){
@@ -349,6 +357,7 @@ function ddump() {
     openTrace();
     dumpbut.classList.remove("is-loading");
     setAlert("");
+    window.alert = walert;
   }, 50);
 }
 function toggleThis(e) {
@@ -403,7 +412,7 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.9</font><br>
+            <font size="6px">Trace Generator v1.0.10</font><br>
             <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
           </article>
         </center>
@@ -519,11 +528,6 @@ function tracer() {
   hijackFunctions();
 }
 function hijackFunctions() {
-  window.alert = function(){
-    if (debug) {
-      console.log("alert")
-    }
-  };
   driver.os = driver.openSimulator;
   setTimeout(function(){
   driver.openSimulator = function(){
