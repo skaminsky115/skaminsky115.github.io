@@ -21,7 +21,7 @@ function ubm_main(loadr) {
 			new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
 		];
 		for (var i = 0; i < my_repos.length; i++) {
-			repos.push(new Repo(my_repos[i].name, my_repos[i].baseurl, my_repos[i].repo.js, my_repos[i].repofn, my_repos[i].alwayscheck));
+			repos.push(new Repo(my_repos[i].name, my_repos[i].baseurl, my_repos[i].repojs, my_repos[i].repofn, my_repos[i].alwayscheck));
 		}
 		loadRepos();
 	} else {
