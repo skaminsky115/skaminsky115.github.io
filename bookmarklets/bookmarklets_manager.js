@@ -27,8 +27,9 @@ class Repo {
 
 */
 var repos = [
-	new Repo("skaminsky115 Repo", "http://localhost/skaminsky115%20Web%20Site/git%20repo/bookmarklets/", "bookmarklets_repo.js", true, true),
-	//new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
+	//new Repo("skaminsky115 Repo", "http://localhost/skaminsky115%20Web%20Site/git%20repo/bookmarklets/", "bookmarklets_repo.js", true, true),
+	//new Repo("skaminsky115 Test Repo", "http://localhost/skaminsky115%20Web%20Site/git%20repo/bookmarklets/test/", "bookmarklets_repo.js", true, false),
+	new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
 ];
 
 //--------- Helper functions ----------
