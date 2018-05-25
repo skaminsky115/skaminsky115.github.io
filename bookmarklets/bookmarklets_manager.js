@@ -1,4 +1,35 @@
 // This script will load a script if it detects that the page has some custom script to load.
+
+//Settings
+/*
+	repos is all of the bookmarklet repos.
+	Each Repo class contains the following items (In same order):
+	Name (str): This is the name of the repo
+	Base Url (str): This is the base url to the bookmarklets.
+	Repo Info (str) [Default: 'bookmarklets_repo.js']: This file contains all the scripts.
+	Repo Fn (bool): If true, will also run the custom script on the repo. Only do this if you trust the repo.
+	Check Regardless (bool): This will make this repo get checked to load the script regardless of if it is in the database.
+
+*/
+function ubm_main(loadr) {
+	if (loadr) {
+		if(typeof my_repos === "undefined") {
+			alert("Please make sure you have defined 'my_repos' correctly!");
+			throw "[ERROR]: Haulting script!";
+		}
+		repos = [
+			new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
+		];
+		for (var i = 0; i < my_repos.length; i++) {
+			repos.push(new Repo(my_repos[i].name, my_repos[i].baseurl, my_repos[i].repo.js, my_repos[i].repofn, my_repos[i].alwayscheck));
+		}
+		loadRepos();
+	} else {
+		finish_load();
+	}
+}
+
+//--------- Helper functions ----------
 /*
 	This is the format for the 
 */
@@ -15,25 +46,6 @@ class Repo {
 	    this.alwayscheck = alwayscheck;
 	}
 }
-//Settings
-/*
-	repos is all of the bookmarklet repos.
-	Each Repo class contains the following items (In same order):
-	Name (str): This is the name of the repo
-	Base Url (str): This is the base url to the bookmarklets.
-	Repo Info (str) [Default: 'bookmarklets_repo.js']: This file contains all the scripts.
-	Repo Fn (bool): If true, will also run the custom script on the repo. Only do this if you trust the repo.
-	Check Regardless (bool): This will make this repo get checked to load the script regardless of if it is in the database.
-
-*/
-var repos = [
-	//new Repo("skaminsky115 Repo", "http://localhost/skaminsky115%20Web%20Site/git%20repo/bookmarklets/", "bookmarklets_repo.js", true, true),
-	//new Repo("skaminsky115 Test Repo", "http://localhost/skaminsky115%20Web%20Site/git%20repo/bookmarklets/test/", "bookmarklets_repo.js", true, false),
-	new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
-];
-
-//--------- Helper functions ----------
-
 
 /*
 	This is for the repo to add a site.
@@ -85,44 +97,46 @@ function extend(obj, src) {
 //-------- END Helper functions -------
 
 //Load Repos info
-var ubm_db = {};
-var ubm_alwayscheck = [];
-var ubm_i = repos.length;
-var ubm_loaded = true;
-var ubm_lfailed = false;
-var repo_sites = {};
-function repo_fn(){}
-var r = null;
-var ubm_interval = setInterval(function(){
-	if (ubm_loaded) {
-		ubm_loaded = false;
-		if (ubm_lfailed) {
-			console.log("Could not load repo: " + ubm_lfailed);
-			ubm_lfailed = false;
-		}
-		for (var key in repo_sites) {
-			if (repo_sites.hasOwnProperty(key)) {
-				repo_sites[key].baseurl = r.baseurl;
+function loadRepos() {
+	ubm_db = {};
+	ubm_alwayscheck = [];
+	ubm_i = repos.length;
+	ubm_loaded = true;
+	ubm_lfailed = false;
+	repo_sites = {};
+	function repo_fn(){}
+	r = null;
+	ubm_interval = setInterval(function(){
+		if (ubm_loaded) {
+			ubm_loaded = false;
+			if (ubm_lfailed) {
+				console.log("Could not load repo: " + ubm_lfailed);
+				ubm_lfailed = false;
+			}
+			for (var key in repo_sites) {
+				if (repo_sites.hasOwnProperty(key)) {
+					repo_sites[key].baseurl = r.baseurl;
+				}
+			}
+			ubm_db = extend(ubm_db, repo_sites);
+			if (r && r.repofn) {
+				repo_fn();
+			}
+			ubm_i--;
+			if (ubm_i < 0) {
+				clearInterval(ubm_interval);
+				finish_load();
+				return;
+			}
+			r = repos[ubm_i];
+			repo_sites = {};
+			loadScript(r.baseurl + r.repojs, `scriptfail(this, function(){ubm_loaded = true; ubm_lfailed = "` + r.name + `";})`);
+			if (r.alwayscheck) {
+				ubm_alwayscheck.push(r);
 			}
 		}
-		ubm_db = extend(ubm_db, repo_sites);
-		if (r && r.repofn) {
-			repo_fn();
-		}
-		ubm_i--;
-		if (ubm_i < 0) {
-			clearInterval(ubm_interval);
-			finish_load();
-			return;
-		}
-		r = repos[ubm_i];
-		repo_sites = {};
-		loadScript(r.baseurl + r.repojs, `scriptfail(this, function(){ubm_loaded = true; ubm_lfailed = "` + r.name + `";})`);
-		if (r.alwayscheck) {
-			ubm_alwayscheck.push(r);
-		}
-	}
-}, 5);
+	}, 5);
+}
 
 function finish_load(){
 	//Get current url
@@ -140,3 +154,4 @@ function finish_load(){
 		}
 	}
 }
+ubm_main(true);
