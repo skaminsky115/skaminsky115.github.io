@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unimarklet</title>
+</head>
+<body>
+	<h1>Unimarklet</h1>
+	This site will help you add the unimarklet with any custom repo you want. It is still a work in progress but will be really cool when complete.
+	<br>
+	For now, drag this element (<a id="a" href="javascript:alert("Loading...");">Unimarklet</a>) to your favorites or paste this into your bookmark manager:
+	<br><br>
+	<textarea id="b" style="width: 720px; height: 300px;" onclick="this.select()">Loading...</textarea>
+	<script type="text/javascript">
+		var s = `javascript:(function(){
+	function bmklt() {
+		if (typeof ubm_main == "function") {
+			ubm_main(false);
+			return;
+		}
+		my_repos = [
+			/*This is an example of what you need for a repo.*/
+			["skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true],
+		];
+		var script = document.createElement('script');
+		script.setAttribute("onerror", "alert('couldnt load')");
+		script.setAttribute("src", "https://skaminsky115.github.io/bookmarklets/bookmarklets_manager.js");
+		document.getElementsByTagName("head")[0].appendChild(script);
+	}
+	bmklt();
+})();`;
+	document.getElementById("a").href = s;
+	document.getElementById("b").innerHTML = s;
+	</script>
+</body>
+</html>

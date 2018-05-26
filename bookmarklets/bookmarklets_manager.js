@@ -1,8 +1,13 @@
 // This script will load a script if it detects that the page has some custom script to load.
 
+if (typeof repos !== "undefined") {
+	//alert("The script is already loaded! The main function should be called instead!");
+	throw "[ERROR]: Script already loaded! Please run ubm_main instead!";
+}
+
 //Settings
 /*
-	repos is all of the bookmarklet repos.
+	repos is all of the bookmarklet repos.`
 	Each Repo class contains the following items (In same order):
 	Name (str): This is the name of the repo
 	Base Url (str): This is the base url to the bookmarklets.
@@ -21,7 +26,15 @@ function ubm_main(loadr) {
 			new Repo("skaminsky115 Repo", "https://skaminsky115.github.io/bookmarklets/", "bookmarklets_repo.js", true, true),
 		];
 		for (var i = 0; i < my_repos.length; i++) {
-			repos.push(new Repo(my_repos[i].name, my_repos[i].baseurl, my_repos[i].repojs, my_repos[i].repofn, my_repos[i].alwayscheck));
+			r = my_repos[i];
+			for (var j = repos.length - 1; j >= 0; j--) {
+				if (r[1] == repos[j].baseurl) {
+					r = null;
+				}
+			}
+			if (r) {
+				repos.push(new Repo(r[0], r[1], r[2], r[3], r[4]));
+			}
 		}
 		loadRepos();
 	} else {
