@@ -2,14 +2,12 @@
 <html>
   <head>
     <title> Stephan Kaminsky's Website </title>
-    <noscript>
-	  <meta http-equiv="refresh" content="0;url=noscript.html">
-	</noscript>
     <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/noscript.css">
   </head>
-  <body>
+  <body onload="jsLoad();">
     <div class="content">
 	    <div class="box header">
 	        <span class="name">STEPHAN KAMINSKY</span>
@@ -70,6 +68,16 @@
 	        </div>
 	    </div>
 	    <br><br>
+	    <noscript id="nsT">
+	    	<div class="noscriptText" id="nsTxt">
+		    	Uh oh! It appears you do not have javascript enabled. This website requires javascript because it is statically hosted and is a way to make it easier to maintain. Here is a simplified page but if you want to use the full site, you will have to enable javascript to utilize the full site.
+			</div>
+	    </noscript>
+	    <script type="text/javascript">
+	    	function jsLoad() {
+	    		document.getElementById("nsT").style.display = "none";
+	    	}
+	    </script>
     </div>
   </body>
 </html>

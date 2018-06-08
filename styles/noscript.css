@@ -1,0 +1,28 @@
+.noscriptText {
+	-webkit-animation: noscript_color_change 2s infinite alternate;
+	-moz-animation: noscript_color_change 2s infinite alternate;
+	-ms-animation: noscript_color_change 2s infinite alternate;
+	-o-animation: noscript_color_change 2s infinite alternate;
+	animation: noscript_color_change 2s infinite alternate;
+}
+
+@-webkit-keyframes noscript_color_change {
+	from { color: red; }
+	to { color: yellow; }
+}
+@-moz-keyframes noscript_color_change {
+	from { color: red; }
+	to { color: yellow; }
+}
+@-ms-keyframes noscript_color_change {
+	from { color: red; }
+	to { color: yellow; }
+}
+@-o-keyframes noscript_color_change {
+	from { color: red; }
+	to { color: yellow; }
+}
+@keyframes noscript_color_change {
+	from { color: red; }
+	to { color: yellow; }
+}
