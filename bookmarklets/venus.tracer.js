@@ -55,7 +55,11 @@ function numToBase(n, length, base, signextend) {
     }
   return snum;
 }
-var regs = [1, 2, 5, 6, 7, 8, 9, 10];
+//var regs = [0, 1, 2, 5, 6, 7, 8, 9, 10];
+var regs = [];
+for (var i = 0; i < 32; i++) {
+   regs.push(i);
+}
 var lin = 0;
 var extra = 0;
 function getOneTrace(additional, final) {
@@ -133,6 +137,7 @@ async function generateTrace() {
 //       ell.value = "0x00000000";
 //       driver.saveRegister(ell, 2);
          registerInteract(2, 0);
+         registerInteract(3, 0);
     }
     var res = [];
     var runNextTrace = 1;
@@ -380,7 +385,17 @@ function validateBase(e) {
     e.value = 32;
   }
 }
-function downloadtrace(id, filename) {
+function downloadtrace(id, filename, custom_name) {
+  var cusN = prompt("Please enter a name for the file. Leave blank for default.");
+  if (cusN != "") {
+    if (cusN == null) {
+      return;
+    }
+     if (cusN.split('.').pop() != filename.split('.').pop()) {
+      cusN = cusN + "." + filename.split('.').pop();
+    }
+    filename = cusN;
+  }
   var text = document.getElementById(id).value;
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -412,8 +427,8 @@ function tracer() {
     <div class="tile">
       <div class="tile is-parent">
           <article class="tile is-child is-primary" align="center">
-            <font size="6px">Trace Generator v1.0.10</font><br>
-            <font size="4px">Created by Stephan Kaminsky using parts from an Anonymous post on Piazza.</font>
+            <font size="6px">Trace Generator v1.1.0</font><br>
+            <font size="4px">Created by Stephan Kaminsky.</font>
           </article>
         </center>
       </div>
@@ -460,14 +475,14 @@ function tracer() {
             <table id="options2" class="table" style="width:50%; margin-bottom: 0;">
               <thead>
                 <tr>
-                  <th><center>Set SP to 0<br>before the trace?*</center></th>
+                  <th><center>Set SP & GP to 0<br>before the trace?*</center></th>
                   <th><center>Save Registers?**<br><a onclick="resetRegisters();">Click to reset</a></center></th>
                   <th><center>Instruction first?***</center></th>
                 </tr>
               </thead>
                 <tr>
                   <th><center>
-                    <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP</button>
+                    <button id="spzero" class="button is-primary" onclick="toggleThis(this)" value="true">0 SP & GP</button>
                   </center></th>
                   <th><center><button id="save-regs" class="button" onclick="toggleThis(this)" value="false" disabled>Save</button></center></th>
                   <th><center><button id="inst-first" class="button is-primary" onclick="toggleThis(this)" value="true">Inst First</button></center></th>
@@ -485,7 +500,7 @@ function tracer() {
      </div>
      <div class="tile is-parent">
       <article class="tile is-child">
-        Trace:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-output', 'trace.out')">Download!</a>
+        Trace:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-output', 'trace.out', true)">Download!</a>
         <br>
         <font size="2px">If you have issues with tabs not copying, you should click the download button instead. For some reason, tabs are not always copying for me.</font>
         <br>
@@ -494,7 +509,7 @@ function tracer() {
     </div>
     <div class="tile is-parent">
       <article class="tile is-child">
-        Trace Dump:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-dump-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-dump-output', 'dump.hex')">Download!</a>
+        Trace Dump:&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="CopyToClipboard('trace-dump-output')">Copy!</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="downloadtrace('trace-dump-output', 'dump.hex', true)">Download!</a>
         <br>
         <textarea id="trace-dump-output" class="textarea" placeholder="trace dump output" readonly=""></textarea>
       </article>

@@ -2,9 +2,14 @@
 <html>
   <head>
     <title> Stephan Kaminsky's Website </title>
-    <noscript>
-	  <meta http-equiv="refresh" content="0;url=noscript.html">
-	</noscript>
+    <script type="text/javascript">
+		window.onload = function() {
+		    // similar behavior as an HTTP redirect
+		    var t = document.getElementById("nsTxt");
+		    t.innerHTML = `Javascript is enabled! Redirecting back to main site!`;
+		    window.location.replace("index.html");
+		}
+	</script>
     <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -70,6 +75,39 @@
 	        </div>
 	    </div>
 	    <br><br>
+	    <div class="noscriptText" id="nsTxt">
+	    	Uh oh! It appears you do not have javascript enabled. This website requires javascript because it is statically hosted and is a way to make it easier to maintain. Here is a simplified page but if you want to use the full site, you will have to enable javascript and <a href="index.html" style="color:green;">go back to the main page</a>.
+		</div>
+		<style type="text/css">
+			.noscriptText {
+			 -webkit-animation: noscript_color_change 2s infinite alternate;
+			 -moz-animation: noscript_color_change 2s infinite alternate;
+			 -ms-animation: noscript_color_change 2s infinite alternate;
+			 -o-animation: noscript_color_change 2s infinite alternate;
+			 animation: noscript_color_change 2s infinite alternate;
+			}
+
+			@-webkit-keyframes noscript_color_change {
+				from { color: red; }
+				to { color: yellow; }
+			}
+			@-moz-keyframes noscript_color_change {
+				from { color: red; }
+				to { color: yellow; }
+			}
+			@-ms-keyframes noscript_color_change {
+				from { color: red; }
+				to { color: yellow; }
+			}
+			@-o-keyframes noscript_color_change {
+				from { color: red; }
+				to { color: yellow; }
+			}
+			@keyframes noscript_color_change {
+				from { color: red; }
+				to { color: yellow; }
+			}
+		</style>
     </div>
   </body>
 </html>
