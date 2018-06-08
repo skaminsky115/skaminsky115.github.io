@@ -150,6 +150,7 @@ body {
 .tooltip {
     position: relative;
     display: inline-block;
+    opacity: 1;
 }
 
 .tooltip .tooltiptext {
