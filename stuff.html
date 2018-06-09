@@ -1,37 +1,82 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>My test site</title>
-	<link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
-	<script src="//cdn.muicss.com/mui-latest/webcomponents/mui-webcomponents.js"></script>
-	<script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
-</head>
-<body>
-	<center>
-		Here is where I have random links and apps which I use to test stuff with. There will me more stuff on this page soon!
-		<div>
-			<a href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.pp.youtube-manifest.plist" style="text-decoration: none;">
-				<mui-btn color="primary">
-					DOWNLOAD YT++
-				</mui-btn>
-			</a>
-			<br>
-			<a class="btn btn-secondary" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.cercube-manifest.plist" style="text-decoration: none;">
-				<mui-btn color="accent">
-					DOWNLOAD Cercube
-				</mui-btn>
-			</a><br>
-			<a class="btn btn-black" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.ext.moviebox-manifest.plist" style="text-decoration: none;">
-				<mui-btn color="primary">
-					DOWNLOAD MovBox
-				</mui-btn>
-			</a><br>
-			<a class="btn btn-secondary" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.jb.yalu-manifest.plist" style="text-decoration: none;">
-				<mui-btn color="danger">
-					DOWNLOAD Yalu
-				</mui-btn>
-			</a>
-		</div>
-	</center>
-</body>
+<!DOCTYPE>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <title> Stuff </title>
+	    <script src="scripts/jquery.min.js"></script>
+	    <script src="scripts/popper.min.js"></script>
+	    <link href="styles/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="scripts/bootstrap.min.js"></script>
+
+		<link href="styles/sidebar.css" rel="stylesheet">
+		<script src="scripts/sidebar.js"></script>
+
+	    <!-- This is the main styles for the site. -->
+	    <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
+	    <link rel="stylesheet" href="font/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="styles/noscript.css">
+	    <link rel="stylesheet" href="styles/style.css">
+ 	</head>
+	<body onload="jsLoad();">
+	  	
+	    <div id="wrapper">
+	    	<!-- Overlay for when navbar is active. -->
+	        <div class="overlay" onclick="document.getElementById('hamburger').click();"></div>
+	    	
+	    	<!-- NavBar Data -->
+	        <div id="navbar"></div>
+
+	        <!-- Page Content -->
+	        <div id="page-content-wrapper">
+	            <button type="button" class="hamburger is-closed" data-toggle="offcanvas" id="hamburger" style="display: none;">
+	                <span class="hamb-top"></span>
+	    			<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+	            </button>
+	            <div class="container content">
+	                Here is where I have random links and apps which I use to test stuff with. There will me more stuff on this page soon!
+					<br>
+					<br>
+					<div>
+						<a href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.pp.youtube-manifest.plist" style="text-decoration: none;">
+							<button type="button" class="btn btn-primary">
+								DOWNLOAD YT++
+							</button>
+						</a>
+						<br>
+						<a class="btn btn-secondary" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.cercube-manifest.plist" style="text-decoration: none;">
+							<button type="button" class="btn btn-info">
+								DOWNLOAD Cercube
+							</button>
+						</a>
+						<br>
+						<a class="btn btn-black" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.ext.moviebox-manifest.plist" style="text-decoration: none;">
+							<button type="button" class="btn btn-warning">
+								DOWNLOAD MovBox
+							</button>
+						</a>
+						<br>
+						<a class="btn btn-secondary" href="itms-services://?action=download-manifest&amp;url=https://thaumicmekanism.github.io/downloads/apps/com.thaumictech.jb.yalu-manifest.plist" style="text-decoration: none;">
+							<button type="button" class="btn btn-danger">
+								DOWNLOAD Yalu
+							</button>
+						</a>
+					</div>
+	            </div>
+	        </div>
+	        <!-- /#page-content-wrapper -->
+
+	    </div>
+	    <!-- /#wrapper -->
+	    <script type="text/javascript">
+	    	/*
+				This function loads all of the assets which the page needs.
+	    	*/
+	    	function jsLoad() {
+	    		
+	    	}
+	    </script>
+		
+  	</body>
 </html>
