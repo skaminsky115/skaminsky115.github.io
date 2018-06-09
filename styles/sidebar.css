@@ -273,3 +273,14 @@ html { height: 100%;}
     opacity: 0.3;
     z-index: 1;
 }
+
+/*-------------------------------*/
+/*            My Extra           */
+/*-------------------------------*/
+.notransition * { 
+  -webkit-transition: none !important; 
+  -moz-transition: none !important; 
+  -o-transition: none !important; 
+  -ms-transition: none !important; 
+  transition: none !important; 
+} 
