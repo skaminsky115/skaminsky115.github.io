@@ -18,6 +18,42 @@
 	    <link rel="stylesheet" href="styles/noscript.css">
 	    <link rel="stylesheet" href="styles/main.css">
 	    <link rel="stylesheet" href="styles/style.css">
+        <style type="text/css">
+            date {
+                color: gold;
+            }
+            table {
+                margin:0 auto;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+            td:nth-child(2) {
+                color: gold;
+            }
+            td:nth-child(3) {
+                color: orange;
+            }
+            table tr:nth-child(even) {
+                background-color: #5c6770;
+            }
+            table tr:nth-child(odd) {
+               background-color: #39383b;
+            }
+            table th {
+                background-color: black;
+                color: white;
+            }
+            tr:nth-child(1) td {
+                color: red !important;
+                background-color: #38424b !important;
+            }
+        </style>
  	</head>
 	<body onload="jsLoad();">
 	  	
@@ -31,7 +67,7 @@
 	        <!-- Jumbotron With Page Title -->
 			<div class="container">
 				<div class="jumbotron">
-			    	<h1>CS61C</h1>
+			    	<h1>CS61C Fall 2018</h1>
 				</div>
 			</div>
 	        
@@ -44,7 +80,46 @@
 					<span class="hamb-bottom"></span>
 	            </button>
 	            <div class="container content">
-	                    There may be something here soon...
+                        <h1 style="font-size: 200%; color:gray;">Announcements</h1><hr>
+                        <div style="font-size:120%">
+                            <span><date>(8/22/18):</date> Welcome to CS61C!</span>
+                        </div><br><br>
+                        <h1 style="font-size: 200%; color:gray;">My Sections and Office Hours:</h1><hr>
+                        <div style="font-size:120%; text-align: center;">
+                            <table>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>Number</td>
+                                    <td>Time</td>
+                                </tr>
+                                <tr>
+                                    <td>Office Hours</td>
+                                    <td>N/A</td>
+                                    <td>F 2:00PM-3:00PM</td>
+                                </tr>
+                                <tr>
+                                    <td>Lab Section</td>
+                                    <td>108C</td>
+                                    <td>F 9:00AM-11:00AM</td>
+                                </tr>
+                                <tr>
+                                    <td>Discussion Section</td>
+                                    <td>108B</td>
+                                    <td>Tu 10:00AM-11:00AM</td>
+                                </tr>
+                            </table>
+                        </div><br><br>
+                        <h1 style="font-size: 200%; color:gray;">Important Links</h1><hr>
+                        <div style="text-align: left;">
+                            <span style="font-size: 150%">Section Attendance:</span> <a href="https://tinyurl.com/stephanCS61CSection" style="color:gold;font-size: 125%">https://tinyurl.com/stephanCS61CSection</a><br>
+                            <span style="font-size: 150%">Email Form:</span> <a href="https://tinyurl.com/stephanCS61CEmail" style="color:gold;font-size: 125%">https://tinyurl.com/stephanCS61CEmail</a><br>
+                            <span style="font-size: 150%">CS61C Website:</span> <a href="http://inst.eecs.berkeley.edu/~cs61c/fa18/" style="color:gold;font-size: 125%">http://inst.eecs.berkeley.edu/~cs61c/fa18/</a>
+                        </div><br><br>
+                        <h1 style="font-size: 200%; color:gray;">Discussion Notes</h1><hr>
+                        <div style="font-size:120%; text-align: auto;">
+                            <span>None yet!</span>
+                        </div><br><br>
+                        
 	            </div>
 	        </div>
 	        <!-- /#page-content-wrapper -->
