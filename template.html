@@ -1,64 +1,81 @@
 <!DOCTYPE>
 <html lang="en">
-  	<head>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <title> Template </title>
-	    <script src="scripts/jquery.min.js"></script>
-	    <script src="scripts/popper.min.js"></script>
-	    <link href="styles/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="scripts/bootstrap.min.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Template </title>
+        <script src="scripts/jquery.min.js"></script>
+        <script src="scripts/popper.min.js"></script>
+        <link href="styles/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="scripts/bootstrap.min.js"></script>
 
-		<link href="styles/sidebar.css" rel="stylesheet">
-		<script src="scripts/sidebar.js"></script>
+        <script src="scripts/footer.js"></script>
+        <link href="styles/sidebar.css" rel="stylesheet">
+        <script src="scripts/sidebar.js"></script>
 
-	    <!-- This is the main styles for the site. -->
-	    <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
-	    <link rel="stylesheet" href="font/css/font-awesome.min.css">
-	    <link rel="stylesheet" href="styles/noscript.css">
-	    <link rel="stylesheet" href="styles/main.css">
-	    <link rel="stylesheet" href="styles/style.css">
- 	</head>
-	<body onload="jsLoad();">
-	  	
-	    <div id="wrapper">
-	    	<!-- Overlay for when navbar is active. -->
-	        <div class="overlay" onclick="document.getElementById('hamburger').click();"></div>
-	    	
-	    	<!-- NavBar Data -->
-	        <div id="navbar"></div>
+        <!-- This is the main styles for the site. -->
+        <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="font/css/font-awesome.min.css">
+        <link rel="stylesheet" href="styles/noscript.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body id="body" onload="jsLoad();">
+        
+        <div id="wrapper">
+            <!-- Overlay for when navbar is active. -->
+            <div class="overlay" onclick="document.getElementById('hamburger').click();"></div>
+            
+            <!-- NavBar Data -->
+            <div id="navbar"></div>
 
-	        <!-- Jumbotron With Page Title -->
-			<div class="container">
-				<div class="jumbotron">
-			    	<h1>Template</h1>
-				</div>
-			</div>
-	        
+            <!-- Jumbotron With Page Title -->
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>Template</h1>
+                </div>
+            </div>
+            
 
-	        <!-- Page Content -->
-	        <div id="page-content-wrapper">
-	            <button type="button" class="hamburger is-closed" data-toggle="offcanvas" id="hamburger" style="display: none;">
-	                <span class="hamb-top"></span>
-	    			<span class="hamb-middle"></span>
-					<span class="hamb-bottom"></span>
-	            </button>
-	            <div class="container content">
-	                    Page content!
-	            </div>
-	        </div>
-	        <!-- /#page-content-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <button type="button" class="hamburger is-closed" data-toggle="offcanvas" id="hamburger" style="display: none;">
+                    <span class="hamb-top"></span>
+                    <span class="hamb-middle"></span>
+                    <span class="hamb-bottom"></span>
+                </button>
+                <div class="container content">
+                    <!-- \/Your Page Content Here!\/ -->
+                        Page content!                        
+                    <!-- ^^Your Page Content Here!^^ -->
+                    <!-- Noscript Data -->
+                    <noscript id="nsT">
+                        <div class="noscriptText" id="nsTxt">
+                            Uh oh! It appears you do not have javascript enabled. This website requires javascript because it is statically hosted and is a way to make it easier to maintain. Here is a simplified page but if you want to use the full site, you will have to enable javascript to utilize the full site.
+                        </div>
+                    </noscript>
+                    <!-- Noscript Data -->
+                    <!-- Footer Data -->
+                    <br>
+                    <br>
+                    <br>
+                    <div id="footer" class="page-footer font-small"></div>
+                    <!-- /#Footer Data -->
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
-	    </div>
-	    <!-- /#wrapper -->
-	    <script type="text/javascript">
-	    	/*
-				This function loads all of the assets which the page needs.
-	    	*/
-	    	function jsLoad() {
-	    		
-	    	}
-	    </script>
-		
-  	</body>
+        <script type="text/javascript">
+            /*
+                This function loads all of the assets which the page needs.
+            */
+            function jsLoad() {
+                
+            }
+        </script>
+        
+    </body>
 </html>
+<!-- This template was made by Stephan Kaminsky (https://skaminsky115.github.io) -->

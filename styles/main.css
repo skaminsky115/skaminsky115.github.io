@@ -2,15 +2,18 @@
 	background-color: #424750;
 	padding: 5px 5px;
 }
-.footer {
+
+#footer {
     bottom: 0;
     width: 100%;
     height: 60px;
     line-height: 60px;
     background-color: #424750;
     text-align: center;
+    position: relative;
+    border-radius: 10px;
 }
 
-a #link {
+.link {
 	color: gold !important;
 }
