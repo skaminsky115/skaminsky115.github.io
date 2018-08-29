@@ -1,6 +1,11 @@
 if (typeof loc === "undefined") {
   loc = ""
 }
+window.lhn = window.location.hostname
+//This if is for me to be lazy on testing!
+if (window.location.hostname === "localhost") {
+  window.lhn += "/skaminsky115%20Web%20Site"
+}
 $(document).ready(function () {
   var trigger = $('.hamburger'),
       overlay = $('.overlay'),
@@ -30,7 +35,7 @@ $(document).ready(function () {
   });
 
   $("#navbar").load( loc + "modules/navbar.html", function(){
-    $("#navbar").html($("#navbar").html().replace(/{{hostname}}/g, window.location.hostname));
+    $("#navbar").html($("#navbar").html().replace(/{{hostname}}/g, window.lhn));
     $("#hamburger").fadeIn();
   });
 
