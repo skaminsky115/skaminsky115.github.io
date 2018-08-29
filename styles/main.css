@@ -12,6 +12,7 @@
     text-align: center;
     position: relative;
     border-radius: 10px;
+    display: none;
 }
 
 .link {
