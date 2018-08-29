@@ -1,3 +1,6 @@
+if (typeof loc === "undefined") {
+  loc = ""
+}
 $(document).ready(function () {
   var trigger = $('.hamburger'),
       overlay = $('.overlay'),
@@ -26,7 +29,7 @@ $(document).ready(function () {
         $('#wrapper').toggleClass('toggled');
   });
 
-  $("#navbar").load( "modules/navbar.html", function(){
+  $("#navbar").load( loc + "modules/navbar.html", function(){
     $("#navbar").html($("#navbar").html().replace(/{{hostname}}/g, window.location.hostname));
     $("#hamburger").fadeIn();
   });
