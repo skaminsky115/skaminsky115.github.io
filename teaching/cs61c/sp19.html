@@ -1,0 +1,162 @@
+<!DOCTYPE>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <title> CS61C </title>
+        <script type="text/javascript">var loc = "../../";</script>
+	    <script src="../../scripts/jquery.min.js"></script>
+	    <script src="../../scripts/popper.min.js"></script>
+	    <link href="../../styles/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+		<script src="../../scripts/footer.js"></script>
+        <link href="../../styles/sidebar.css" rel="stylesheet">
+		<script src="../../scripts/sidebar.js"></script>
+        <script src="../../scripts/bootstrap.min.js"></script>
+
+	    <!-- This is the main styles for the site. -->
+	    <link href='https://fonts.googleapis.com/css?family=Lato|Montserrat' rel='stylesheet' type='text/css'>
+	    <link rel="stylesheet" href="../../font/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="../../styles/noscript.css">
+	    <link rel="stylesheet" href="../../styles/main.css">
+        <link rel="stylesheet" href="../../styles/style.css">
+	    <link rel="stylesheet" href="../../styles/teaching.css">
+ 	</head>
+	<body onload="jsLoad();">
+	  	
+	    <div id="wrapper">
+	    	<!-- Overlay for when navbar is active. -->
+	        <div class="overlay" onclick="document.getElementById('hamburger').click();"></div>
+	    	
+	    	<!-- NavBar Data -->
+	        <div id="navbar"></div>
+
+	        <!-- Jumbotron With Page Title -->
+			<div class="container">
+				<div class="jumbotron">
+			    	<h1>CS61C Spring 2019</h1>
+				</div>
+			</div>
+	        
+
+	        <!-- Page Content -->
+	        <div id="page-content-wrapper">
+	            <button type="button" class="hamburger is-closed" data-toggle="offcanvas" id="hamburger" style="display: none;">
+	                <span class="hamb-top"></span>
+	    			<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+	            </button>
+	            <div class="container content">
+                        <h1 style="font-size: 200%; color:gray;">Announcements</h1><hr>
+                        <div style="font-size:120%" align="left">
+                            <span><date>(1/22/18):</date> Welcome to CS61C!</span><br>
+                            <br>
+                            <div class="panel panel-theme autocollapse">
+                                <div class="panel-heading clickable">
+                                    <h3 class="panel-title">Older Announcements</h3>
+                                </div>      
+                                <div class="panel-body" style="display: none;">
+                                </div>
+                            </div>
+
+                        </div><br>
+                        <h1 style="font-size: 200%; color:gray;">My Sections and Office Hours:</h1><hr>
+                        <div style="font-size:120%; text-align: center;">
+                            <table>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>Number</td>
+                                    <td>Time</td>
+                                    <td>Room</td>
+                                </tr>
+                                <tr>
+                                    <td>Discussion</td>
+                                    <td>116</td>
+                                    <td>W 9:00AM-10:00AM</td>
+                                    <td>Dwinelle 229</td>
+                                </tr>
+                                <tr>
+                                    <td>Lab Section</td>
+                                    <td>121L</td>
+                                    <td>M 9:00AM-11:00AM</td>
+                                    <td>Soda 273</td>
+                                </tr>
+                                <tr>
+                                    <td>Office Hours</td>
+                                    <td>N/A</td>
+                                    <td>W 10:00AM-1:00PM</td>
+                                    <td>Soda 283E</td>
+                                </tr>
+                            </table>
+                        </div><br><br>
+                        <h1 style="font-size: 200%; color:gray;">Important Links</h1><hr>
+                        <div style="text-align: left;">
+                            <span style="font-size: 150%">Venus (a RISC-V assembler and simulator which I have been working on):<br></span> <a href="https://thaumicmekanism.github.io/venus" style="color:gold;font-size: 120%">https://thaumicmekanism.github.io/venus</a><br><br><br>
+                            <span style="font-size: 130%">CS61C Website:</span> <a href="http://inst.eecs.berkeley.edu/~cs61c/sp19/" style="color:gold;font-size: 115%">http://inst.eecs.berkeley.edu/~cs61c/sp19/</a>
+                        </div><br><br>
+                        <h1 style="font-size: 200%; color:gray;">Discussion Materials</h1><hr>
+                        <div style="font-size:120%; text-align: auto;">
+                            <table>
+                                <tr>
+                                    <td>Worksheets</td>
+                                    <td>Solutions</td>
+                                    <td>Notes</td>
+                                </tr>
+                                <!-- <tr>
+                                    <td><a href="resources/fa18/Disc01.pdf">Disc01</a></td>
+                                    <td><a href="resources/fa18/Disc01_sol.pdf">Disc01_sol</a></td>
+                                    <td><a href="resources/fa18/Disc01_notes.pdf">Disc01_notes</a></td>
+                                </tr> -->
+                            </table>
+                        </div><br><br>
+
+                    <!-- Noscript Data -->
+                    <noscript id="nsT">
+                        <div class="noscriptText" id="nsTxt">
+                            Uh oh! It appears you do not have javascript enabled. This website requires javascript because it is statically hosted and is a way to make it easier to maintain. Here is a simplified page but if you want to use the full site, you will have to enable javascript to utilize the full site.
+                        </div>
+                    </noscript>
+                    <!-- Noscript Data -->
+                    <!-- Footer Data -->
+                    <br>
+                    <br>
+                    <br>
+                    <div id="footer" class="page-footer font-small"></div>
+                    <!-- /#Footer Data -->
+	            </div>
+	        </div>
+	        <!-- /#page-content-wrapper -->
+
+	    </div>
+	    <!-- /#wrapper -->
+	    <script type="text/javascript">
+	    	/*
+				This function loads all of the assets which the page needs.
+	    	*/
+	    	function jsLoad() {
+	    		
+	    	}
+            $(document).on('click', '.panel div.clickable', function (e) {
+                var $this = $(this); //Heading
+                var $panel = $this.parent('.panel');
+                var $panel_body = $panel.children('.panel-body');
+                var $display = $panel_body.css('display');
+
+                if ($display == 'block') {
+                    $panel_body.slideUp();
+                } else if($display == 'none') {
+                    $panel_body.slideDown();
+                }
+            });
+
+            $(document).ready(function(e){
+                var $classy = '.panel.autocollapse';
+
+                var $found = $($classy);
+                $found.find('.panel-body').hide();
+                $found.removeClass($classy);
+            });
+	    </script>
+		
+  	</body>
+</html>
